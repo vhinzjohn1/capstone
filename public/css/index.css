@@ -1,0 +1,36 @@
+*{
+    z-index: 2;
+    background-color: #91aee4;
+}
+header{
+    background-color: #91aee4;
+}
+h1, p{
+    color: black;
+}
+h4{
+    color: black;
+}
+.login-btn{
+    position: relative;
+    padding: 10px 30px ;
+    background-color: rgb(83, 83, 233);
+    margin: 10px;
+    color:antiquewhite;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.login-btn:hover{
+    background-color: rgb(133, 133, 238);
+}
+.signup-btn:hover{
+    background-color: rgb(127, 127, 134);
+}
+.signup-btn{
+    position: relative;
+    padding: 10px 30px ;
+    background-color: rgb(71, 71, 75);
+    color:antiquewhite;
+    border-radius: 5px;
+    text-decoration: none;
+}

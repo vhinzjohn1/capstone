@@ -1,0 +1,369 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    background-color: #1e3c72;
+    min-height: 100vh;
+    position: relative;
+}
+
+.rocket{
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    width: 400px;
+    height: 400px;
+    z-index: 1;
+}
+
+/* Black Cover Section */
+.cover {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.397);
+    color: black;
+    min-width: 100%;
+    min-height: 100vh;
+    z-index: 1;
+}
+
+/* Coin Styling */
+.coin{
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    display: flex;
+    right: 10px;
+    color: yellow;
+}
+.coin img{
+    width: 60px;
+    height: 60px;
+}
+.coin h3{
+    margin: 15px;
+    font-size: 1.4rem;
+}
+@media (max-width: 768px) {
+    .coin h3{
+        margin: 15px;
+        font-size: 1rem;
+        position: absolute;
+        top: 1.3rem;
+        right: -15px;
+        display: flex;
+    }
+    .coin img{
+        max-width: 80%;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* CSS for the coin animation */
+.coin-animation {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    font-size: 2rem;
+    text-align: center;
+    top: 50%;
+    right: 10%;
+    color: yellow;
+    font-weight: bold;
+    opacity: 0;
+    z-index: 10;
+    transition: opacity 1s ease-in-out;
+}
+
+.animate-coin {
+    animation: slide-in 1s ease-in-out;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateY(-50%) translateX(100%);
+    }
+    100% {
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.instruction {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.instruction h2 {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.644);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.instruction img {
+    margin-top: 10px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px){
+    .instruction h2 {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.644);
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+    .instruction img {
+        margin-top: 10px;
+        max-width: 90%;
+        height: auto;
+        border-radius: 10px;
+    }
+}
+
+.draggable-container {
+    display: flex;
+    flex-direction: column; /* Display elements in a column on smaller screens */
+    align-items: center;
+    margin-top: 20px;
+    z-index: 2;
+}
+
+.draggable {
+    display: flex;
+    flex-direction: row; /* Display in row direction */
+    align-items: center;
+    padding: 20px;
+    color: white;
+    border: 1px solid #ccc;
+    margin: 10px;
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+    position: relative;
+}
+
+.drop-area {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed grey;
+    border-radius: 10px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.2s, opacity 0.2s; 
+}
+/* Add a class for fading out the content */
+.drop-area.fade-out {
+    opacity: 0;
+}
+
+img.draggable-img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
+
+@media screen and (min-width: 768px) {
+    .draggable-container {
+        flex-direction: row; /* Display elements in a row on larger screens */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .draggable {
+        flex-basis: calc(50% - 20px);
+        margin: 10px;
+    }
+}
+@media (max-width: 768px){
+    .draggable {
+        display: flex;
+        flex-direction: row; /* Display in row direction */
+        align-items: center;
+        padding: 20px;
+        color: white;
+        border: 1px solid #ccc;
+        margin: 10px;
+        max-width: 400px;
+        height: 100px;
+        width: 100%;
+        text-align: left;
+        position: relative;
+    }
+    
+    .drop-area {
+        width: 90px;
+        height: 80px;
+        border: 2px dashed grey;
+        border-radius: 10px;
+        margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: border-color 0.2s, opacity 0.2s; 
+    }
+}
+
+
+/* Choices Section CSS */
+.choices-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.choices {
+    margin: 10px;
+    height: 80px;
+    width: 80px;
+    background-color: white;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid cyan;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+    user-select: none; /* Prevent text selection during dragging */
+}
+
+.choices:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.choices.dragging {
+    cursor: grabbing;
+    z-index: 1000; /* Set a high z-index to ensure it's on top */
+    transition: transform 0.3s;
+    transform: scale(0.9);
+}
+
+.choices.dragging.half-size {
+    transform: scale(0.8);
+}
+
+/* Dropped choices styles */
+.drop-area .choices {
+    width: 100%;
+    height: 80%;
+    border: none;
+    transform: scale(0.85);
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black; /* Set the text color to make it visible */
+    font-size: 16px; /* Adjust the font size */
+    font-weight: bold; /* Optionally adjust the font weight */
+}
+
+/* Optional: Add a border or background color to the dropped choices */
+.drop-area .choices {
+    border: 2px solid cyan; /* Example border style */
+    background-color: white; /* Example background color */
+}
+
+/* Optional: Add hover effect to dropped choices */
+.drop-area .choices:hover {
+    background-color: lightcyan; /* Example hover background color */
+    transform: scale(1.1); /* Example hover scaling */
+}
+/* Add CSS for the Next button */
+
+.continue-btn {
+    position: relative;
+    right: 0;
+    left: 5%;
+    bottom: 15%;
+    align-items: center;
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-family: Phantomsans, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 100px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+    z-index: 10;
+    display: none;
+  }
+  
+  .continue-btn:active,
+  .continue-btn:hover {
+    outline: 0;
+  }
+  
+  .continue-btn span {
+    background-color: rgb(5, 6, 45);
+    padding: 16px 24px;
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    transition: 300ms;
+  }
+  
+  .continue-btn:hover span {
+    background: none;
+  }
+  
+  @media (min-width: 768px) {
+    .continue-btn {
+      font-size: 24px;
+      min-width: 100px;
+    }
+  }
+  @media (max-width: 768px) {
+    .continue-btn {
+      font-size: 15px;
+      min-width: 90px;
+      left: 0;
+    }
+    .continue-btn span {
+        background-color: rgb(5, 6, 45);
+        padding: 14px 15px;
+        border-radius: 6px;
+        width: 100%;
+        height: 100%;
+        transition: 0.2s;
+      }
+  }
+

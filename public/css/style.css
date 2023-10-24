@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+main{
+    /* background-image: url(../background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background-color: #91aee4;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero-inner{
+    position: absolute;
+    right: 300px;
+}
+.hero-inner1{
+    position: absolute;
+    left: 10px;
+    top: 50px;
+}
+.rocket{
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    width: 400px;
+    height: 400px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.glass{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 70vh;
+    width: 50%;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255, 0.3));
+    border-radius: 2rem;
+    z-index: 3;
+    backdrop-filter: blur(0.2rem);
+    box-shadow: 1px 1px 10px rgb(199, 195, 195);
+    gap: 1rem;
+    position: absolute;
+    top: 10%;
+    left: 25%;
+}
+.alert{
+    color: #e42a2a;
+}
+/* Left Section Styling */
+.left-section{
+    position: absolute;
+    width: 35%;
+    background: linear-gradient(to right bottom, rgba(221, 129, 221, 0.7), rgba(55, 111, 121, 0.87));
+    top: 0;
+    bottom: 0;
+    border-radius: 2rem;
+    left: 0;
+    z-index: 1;
+}
+
+.signup-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Align content to the bottom */
+    gap: 10px;
+    background: transparent;
+    transition: background 0.3s;
+    margin-top: 60%; /* Make sure the container fills its height */
+}
+.signup-btn:hover{
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255, 0.3));
+    backdrop-filter: blur(0.2rem);
+    overflow: hidden;
+}
+.signup-btn:hover a {
+    color: black; /* Change the color of the 'a' element to black on hover */
+}
+.signup-btn a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 0.65rem;
+}
+/* Rght Section Styling */
+.right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+    position: absolute;
+    width: 65%;
+    height: 100%;
+    border-radius: 2rem;
+    right: 0;
+    z-index: 1;
+}
+.right-section h1{
+    color: black;
+    margin: 0;
+    margin-bottom: -20px;
+    font-size: 1.5rem;
+}
+
+.right-planet{
+    position: absolute;
+    bottom: -70px;
+    right: -30px;
+    max-height: 200px;
+    max-width: 200px;
+
+}
+@media (max-width: 768px) {
+    .right-planet{
+        position: absolute;
+        bottom: -30px;
+        right: -30px;
+        max-height: 140px;
+        max-width: 140px;
+    }
+
+}
+/* Input Box Section */
+.group 			  { 
+    position: relative; 
+    margin-bottom: 15px; 
+}
+input {
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    border-bottom: 1px solid #757575;
+}
+.fas{
+    position: absolute;
+    color: #253756;
+    top: 14px;
+    right: 10px;
+}
+
+/* Adjust styles for screens with a maximum width of 768px (typical for mobile devices) */
+@media (max-width: 768px) {
+    input {
+        font-size: 14px;
+        height: 40px;
+        width: 140px;
+    }
+    .group 			  { 
+        position: relative; 
+        margin-bottom: 15px; 
+        margin-left: 150px;
+    }
+
+}
+input:focus 		{ outline:none; }  
+  /* LABEL ======================================= */
+label{
+    color:#999; 
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+    
+}
+  
+  /* active state */
+input:focus ~ label, input:valid ~ label{
+    top:-20px;
+    font-size:14px;
+    color:#000000;
+}
+  
+  /* BOTTOM BARS ================================= */
+  .bar 	{ position:relative; display:block; width:300px; }
+  .bar:before, .bar:after 	{
+    content:'';
+    height:2px; 
+    width:0;
+    bottom:1px; 
+    position:absolute;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+  }
+  .bar:before {
+    left:50%;
+  }
+  .bar:after {
+    right:50%; 
+  }
+  
+  /* active state */
+  input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+  }
+  
+  /* HIGHLIGHTER ================================== */
+  .highlight {
+    position:absolute;
+    height:60%; 
+    width:100px; 
+    top:25%; 
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+  }
+  
+  /* active state */
+  input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+  }
+  
+  /* ANIMATIONS ================ */
+  @-webkit-keyframes inputHighlighter {
+      from { background:#5264AE; }
+    to 	{ width:0; background:transparent; }
+  }
+  @-moz-keyframes inputHighlighter {
+      from { background:#5264AE; }
+    to 	{ width:0; background:transparent; }
+  }
+  @keyframes inputHighlighter {
+      from { background:#5264AE; }
+    to 	{ width:0; background:transparent; }
+  }
+
+.btn1 button{
+    background: rgb(255, 255, 255, 0.3);
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 1rem;
+    position: relative;
+    margin-left: 110px;
+}
+.btn1 button:hover{
+    background: rgba(79, 156, 228, 0.3);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Adjust styles for screens with a maximum width of 768px (typical for mobile devices) */
+@media (max-width: 768px) {
+    .btn1 button{
+        background: rgb(255, 255, 255, 0.3);
+        padding: 4px;
+        border-radius: 4px;
+        font-size: 1rem;
+        position: relative;
+        margin-left: 180px;
+    }
+}
+/* Astronaut */
+.astronaut{
+    position: absolute;
+    left: 15%;
+    bottom: 10%;
+    width: 400px;
+    height: 400px;
+}
+/* message design */
+.message {
+    position: absolute;
+    height: auto;
+    width: 50vh;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    font: 2vw system-ui;
+}
+
+.message p {
+    transform: translateY(0px);
+    animation: float 5s ease-in-out infinite;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 15px;
+    color: brown;
+    background-color: beige;
+    padding: 50px;
+    border-radius: 11px;
+    position: relative;
+    box-shadow: 20px 20px blue;
+    font-family: "Baloo 2", cursive;
+    border: 1px solid green;
+}
+
+.message p:after {
+    transform: translateY(0px);
+    animation: float2 5s ease-in-out infinite;
+    content: ".";
+    font-weight: bold;
+    -webkit-text-stroke: 0.5px green;
+    -webkit-text-fill-color: beige;
+    border: 1px solid green;
+    text-shadow: 22px 22px blue;
+    text-align: left;
+    font-size: 55px;
+    width: 55px;
+    height: 11px;
+    line-height: 30px;
+    border-radius: 11px;
+    background-color: beige;
+    position: absolute;
+    display: block;
+    bottom: -30px;
+    left: 0;
+    box-shadow: 22px 22px blue;
+    z-index: -2;
+}
+
+.next-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: aqua;
+    padding: 10px 20px;
+    border: 1px solid green;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes float2 {
+    0% {
+        line-height: 30px;
+        transform: translateY(0px);
+    }
+    55% {
+        transform: translateY(-20px);
+    }
+    60% {
+        line-height: 10px;
+    }
+    100% {
+        line-height: 30px;
+        transform: translateY(0px);
+    }
+}
+
+.pastel-red {
+    color: #e42a2a; /* Replace with your desired pastel red color code */
+    /* You can also add other styling properties like font-size, font-weight, etc. here */
+}
+

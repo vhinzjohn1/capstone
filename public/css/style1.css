@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+main{
+    background-image: url(../background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.glass{
+    min-height: 80vh;
+    width: 60%;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255, 0.3));
+    border-radius: 2rem;
+    z-index: 3;
+    backdrop-filter: blur(0.2rem);
+    box-shadow: 1px 1px 10px rgb(199, 195, 195);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+/* Left Section Styling */
+.left-section{
+    position: absolute;
+    width: 35%;
+    background: linear-gradient(to right bottom, rgba(221, 129, 221, 0.7), rgba(55, 111, 121, 0.87));
+    top: 0;
+    bottom: 0;
+    border-radius: 2rem;
+    left: 0;
+    z-index: 1;
+}
+/* Rght Section Styling */
+.right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+    position: absolute;
+    width: 65%;
+    height: 100%;
+    border-radius: 2rem;
+    right: 0;
+    z-index: 1;
+}
+/* Input Field Styling */
+.inputBox{
+    position: relative;
+    width: 250px;
+}
+.inputBox input{
+    width: 100%;
+    padding: 5px;
+    background: rgb(255, 255, 255, 0.3);
+    border: 1px solid rgba(255,255,255, 0.3);
+    outline: none;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+.inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 8px;
+    pointer-events: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: black;
+    transition: 0.5s;
+}
+.inputBox input:valid ~ span,
+.inputBox input:focus ~ span
+{
+    color: #000e34;
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.7rem;
+    padding: 0.1rem;
+
+}
+.btn1 button{
+    background: rgb(255, 255, 255, 0.3);
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+.btn1 button:hover{
+    background: rgba(79, 156, 228, 0.3);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+.astro{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    border-radius: 50px;
+    z-index: 1;
+    bottom: -5%;
+    left: -10%;
+}
+.planet2{
+    position: absolute;
+    width: 200px;
+    height: 220px;
+    top: -50px;
+    right: -150px;
+    z-index: 1;
+}
+
+/* Astronaut */
+.astronaut{
+    position: absolute;
+    left: 15%;
+    bottom: 10%;
+    width: 400px;
+    height: 400px;
+}
+/* message design */
+.message {
+    position: absolute;
+    height: auto;
+    width: 50vh;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    font: 2vw system-ui;
+}
+
+.message p {
+    transform: translateY(0px);
+    animation: float 5s ease-in-out infinite;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 15px;
+    color: brown;
+    background-color: beige;
+    padding: 50px;
+    border-radius: 11px;
+    position: relative;
+    box-shadow: 20px 20px blue;
+    font-family: "Baloo 2", cursive;
+    border: 1px solid green;
+}
+
+.message p:after {
+    transform: translateY(0px);
+    animation: float2 5s ease-in-out infinite;
+    content: ".";
+    font-weight: bold;
+    -webkit-text-stroke: 0.5px green;
+    -webkit-text-fill-color: beige;
+    border: 1px solid green;
+    text-shadow: 22px 22px blue;
+    text-align: left;
+    font-size: 55px;
+    width: 55px;
+    height: 11px;
+    line-height: 30px;
+    border-radius: 11px;
+    background-color: beige;
+    position: absolute;
+    display: block;
+    bottom: -30px;
+    left: 0;
+    box-shadow: 22px 22px blue;
+    z-index: -2;
+}
+
+.next-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: aqua;
+    padding: 10px 20px;
+    border: 1px solid green;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes float2 {
+    0% {
+        line-height: 30px;
+        transform: translateY(0px);
+    }
+    55% {
+        transform: translateY(-20px);
+    }
+    60% {
+        line-height: 10px;
+    }
+    100% {
+        line-height: 30px;
+        transform: translateY(0px);
+    }
+}
