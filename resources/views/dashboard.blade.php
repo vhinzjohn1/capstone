@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>
+    <!-- This is my dashboard page -->
     <main>
         <section class="topbar">
             <div class="topbar-container">
