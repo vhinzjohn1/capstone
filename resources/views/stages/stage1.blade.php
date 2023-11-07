@@ -3,87 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction</title>
-    <link rel="stylesheet" href="/css/introduction.css">
-    <link href="https://fonts.googleapis.com/css?family=Baloo+2:400,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/stage.css">
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-    <link rel="stylesheet" href="/dist/css/style.css">
+    <title>Stage 1</title>
 </head>
 <body>
 
     <form id="progressForm">
         @csrf
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-        <input type="hidden" name="stage_id" value="1">
+        <input type="hidden" name="stage_id" value="2">
         <input type="hidden" name="score" id="score" value="100">
     </form>
 
-    <!-- including the modal for success -->
+    <!-- including the modal for success message-->
     @include('modals.success')
 
-    <main class="stage1">
-        <section class="hero1">
-            <div class="hero-inner1">
-                <!-- animation effect for hero section -->
-                <div class="hero-figure anime-element">
-                    <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
-                        <rect width="528" height="396" style="fill:transparent;" />
-                    </svg>
-                    <div class="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
-                    <div class="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
-                    <div class="hero-figure-box hero-figure-box-04" data-rotation="-135deg"></div>
-                    <div class="hero-figure-box hero-figure-box-05"></div>
-                    <div class="hero-figure-box hero-figure-box-06"></div>
-                    <div class="hero-figure-box hero-figure-box-07"></div>
-                    <div class="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
-                    <div class="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
-                    <div class="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
-                </div>
-            </div>
-        </div>
-            <div class="container">
-                <div class="hero-inner">
-                    <!-- animation effect for hero section -->
-                    <div class="hero-figure anime-element">
-                        <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
-                            <rect width="528" height="396" style="fill:transparent;" />
-                        </svg>
-                        <div class="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
-                        <div class="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
-                        <div class="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
-                        <div class="hero-figure-box hero-figure-box-05"></div>
-                        <div class="hero-figure-box hero-figure-box-06"></div>
-                        <div class="hero-figure-box hero-figure-box-07"></div>
-                        <div class="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
-                        <div class="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
-                        <div class="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main>
 
-        <div class="message-container">
-            <!-- Add this div for the image -->
-            <img id="tangentImage" src="../img/tangent-line.png" alt="Tangent Line" class="tangent-img">
-            <img id="secantImage" src="../img/secant-line.png" alt="Secant Line" class="secant-img">
-    
-            <div class="message-section">
-                <div class="message">
-                    <div class="message-content">
-                        <!-- Message Section With typing animation -->
-                        <p id="message1"><span></span></p>
-                        <button class="next-button" id="nextButton" style="display: none" onclick="changeMessage()">Next</button>
-                    </div>
-                </div>
-    
-                <div class="astronaut" id="astronaut">
-                    <dotlottie-player src="../lottie/astronaut.json" background="transparent" speed="2" direction="1" mode="normal" loop autoplay></dotlottie-player>
-                </div>
+        {{-- Stage Number Header --}}
+        <h1 class="stage-number">Stage 1</h1>
+
+        <!-- Rocket Animation Lottie -->
+        <div class="rocket" id="rocket">
+            <dotlottie-player src="../lottie/rocket.json" background="transparent" speed="2" direction="1" mode="normal" loop autoplay></dotlottie-player>
+        </div>
+
+        <div class="coin">
+            <h3>Coins: <span id="coinValue">100</span></h3>
+            <img src="/img/coins.png" alt="" srcset="">
+        </div>
+
+        <div class="container">
+            <div class="twelve">
+                <h1>Please select 3 tangent line below</h1>
             </div>
 
+            <!-- Update the symbols for each choice -->
+            <div class="choices">
+                <div class="choice" id="choice1" style="background-image: url(../img/wrong2.png);">CHOICE 1</div>
+                <div class="choice" id="choice2" style="background-image: url(../img/tangent2.png);">CHOICE 2</div>
+                <div class="choice" id="choice3" style="background-image: url(../img/wrong2.png);">CHOICE 5</div>
+                <div class="choice" id="choice4" style="background-image: url(../img/secant1.png);">CHOICE 3</div>
+                <div class="choice" id="choice5" style="background-image: url(../img/tangent1.png);">CHOICE 6</div>
+                <div class="choice" id="choice6" style="background-image: url(../img/secant2.png);">CHOICE 4</div>
+                <div class="choice" id="choice7" style="background-image: url(../img/tangent3.png);">CHOICE 7</div>
+                <div class="choice" id="choice8" style="background-image: url(../img/secant3.png);">CHOICE 8</div>
+            </div>
+
+
+            <button class="continue-btn" role="button" id="nextButton" type="submit"><span class="text">Continue</span></button>
         </div>
+
     </main>
-
 
     {{-- Jquery Ajax for no-refresh database --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -91,99 +63,68 @@
     <script src="/js/bootstrap.min.js"></script>
 
     <script>
-        const messages = [
-            "Hey there, ready for a little math adventure?",
-            "Today, we're diving into the world of tangent and secant lines!",
-            "First up, the **Tangent line**. Think of it as the 'one-point wonder.' It's the line that gently touches a curve at just one point.",
-            "The other is **Secant line** - it's the bold one! It doesn't just say 'hi' to the curve; it boldly intersects it at two or more points.",
-            "Now you're all set to explore the fascinating world of tangent and secant. Enjoy the adventure!"
-        ];
+        const choices = document.querySelectorAll('.choices .choice');
+        let selectedChoices = [];
+        let totalCoins = 100; // Initialize the total coins
     
-        const messageContainer = document.querySelector('.message-content p');
-        const cursor = messageContainer.querySelector('span');
-        const astronaut = document.getElementById('astronaut');
-        const nextButton = document.getElementById('nextButton');
-        let currentMessageIndex = 0;
-        const userId = {{ Auth::user()->id }};
-
-        // Initialize the total coins with a base value
-        let totalCoins = 100;
-
-        const successMessage = '{{ Session::get('success') }}';
-        if (successMessage) {
-            // Show the success modal
-            const successModal = document.getElementById('successModal');
-            successModal.style.display = 'block';
-
-            // Clear the success message from the session to prevent it from showing again on page refresh
-            '{{ Session::forget('success') }}';
+        // Function to update and display the coin value
+        function updateCoinValue() {
+            const coinValueElement = document.getElementById('coinValue');
+            coinValueElement.textContent = totalCoins;
         }
     
-        function typeText(index, message, cursor) {
-            if (index <= message.length) {
-                messageContainer.innerHTML = message.substring(0, index);
-                cursor.style.left = (index * 12) + 'px';
-                setTimeout(function () {
-                    typeText(index + 1, message, cursor);
-                }, 65); // Adjust the delay to control typing speed
-            } else {
-                // Typing animation completed
-                showNextButton();
-            }
+        // Function to check if a choice is correct
+        function isCorrectChoice(choiceId) {
+            return choiceId === 'choice2' || choiceId === 'choice5' || choiceId === 'choice7';
         }
     
-        function showNextButton() {
-            nextButton.style.display = 'block';
-        }
+        choices.forEach(choice => {
+            choice.addEventListener('click', () => {
+                const choiceId = choice.id;
     
-        function changeMessage() {
-            if (currentMessageIndex < messages.length - 1) {
-                currentMessageIndex++;
-                messageContainer.innerHTML = '';
-                cursor.style.left = '0';
-                nextButton.style.display = 'none';
-                typeText(0, messages[currentMessageIndex], cursor);
+                if (selectedChoices.length < 3) {
+                    if (selectedChoices.includes(choiceId)) {
+                        selectedChoices = selectedChoices.filter(id => id !== choiceId);
+                    } else {
+                        selectedChoices.push(choiceId);
+                    }
     
-                // Move the astronaut to the right using a transform animation
-                astronaut.style.transition = 'transform 1.5s ease-in-out';
-                astronaut.style.transform = 'translateX(130%)';
-                
-                if (currentMessageIndex === 2) {
-                    // Display the tangent image with animation after a 2-second delay
-                    setTimeout(function () {
-                        
-                        // Trigger the animation after a short delay
-                        setTimeout(function () {
-                            const tangentImage = document.getElementById('tangentImage');
-                            tangentImage.style.display = 'block';
-                            tangentImage.classList.add('show');
-                        }, 10);
-                    }, 2000);
-                } else if (currentMessageIndex === 3) {
-                    // Hide the tangent image and display the secant image with animation after a 2-second delay
-                        const tangentImage = document.getElementById('tangentImage');
-                        tangentImage.style.display = 'none';
-                        
-                    setTimeout(function () {
-                        // Trigger the animation after a short delay
-                        setTimeout(function () {
-                            const secantImage = document.getElementById('secantImage');
-                            secantImage.style.display = 'block';
-                            secantImage.classList.add('show');
-                        }, 10);
-                    }, 2000);
-                } else if (currentMessageIndex === 4) {
-                    // Hide the tangent image and display the secant image with animation after a 2-second delay
-                        const secantImage = document.getElementById('secantImage');
-                        secantImage.style.display = 'none';
-
-                        // Move the astronaut to the right using a transform animation
-                        astronaut.style.transition = 'transform 1.5s ease-in-out';
-                        astronaut.style.transform = 'translateX(0.5%)';
+                    choices.forEach(c => c.classList.remove('selected', 'correct', 'wrong'));
+                    selectedChoices.forEach(id => {
+                        const choiceElement = document.getElementById(id);
+                        choiceElement.classList.add('selected');
+    
+                        const isCorrect = isCorrectChoice(id);
+                        if (isCorrect) {
+                            choiceElement.classList.add('correct');
+                        } else {
+                            choiceElement.classList.add('wrong');
+                        }
+                    });
+    
+                    // Check if all 3 correct answers are selected
+                    if (selectedChoices.length === 3) {
+                        const allCorrect = selectedChoices.every(id => isCorrectChoice(id));
+    
+                        const continueButton = document.getElementById('nextButton');
+                        if (allCorrect) {
+                            continueButton.style.display = 'flex';
+                            totalCoins += 25 * selectedChoices.length; // Add 25 coins for each correct choice
+                            updateCoinValue(); // Update the coin value
+                        } else {
+                            continueButton.style.display = 'none';
+                        }
+                    } else {
+                        const continueButton = document.getElementById('nextButton');
+                        continueButton.style.display = 'none';
+                    }
                 }
-            } else if (currentMessageIndex === messages.length - 1) {
-            // Add the following Ajax code
-                formSubmitted = true; // Set the flag to prevent multiple submissions
+            });
+        });
+    
+        const continueButton = document.getElementById('nextButton');
+        continueButton.addEventListener('click', () => {
+            formSubmitted = true; // Set the flag to prevent multiple submissions
                 const formData = $('#progressForm').serialize();
 
                 $.ajax({
@@ -201,8 +142,7 @@
                         showErrorMessage('An error occurred: ' + error);
                     }
                 });
-            }
-        }
+        });
 
         // Function to show the custom success modal
         function showSuccessModal() {
@@ -216,9 +156,8 @@
             // For example, you can display an alert:
             alert('Error: ' + message);
         }
-
-        // Start the typing animation when the page loads
-        typeText(0, messages[currentMessageIndex], cursor);
     </script>
+    
+    
 </body>
 </html>

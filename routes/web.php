@@ -52,8 +52,20 @@ Route::post('/signup', [UserController::class, 'register'])->name('register.post
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('/stages/{id}', function ($id) {
-    // Load the Blade template based on the stage ID
-    return view("stages.stage$id", ['stageId' => $id]);
-})->middleware(['web', 'auth'])->name('stage');
+    // Define the maximum number of stages
+    $maxStages = 12;
 
+    // Define the view name prefix for stages
+    $viewPrefix = 'stages.stage';
+
+    if ($id >= 1 && $id <= $maxStages) {
+        // Load the corresponding view based on the stage ID
+        $viewName = $id === 1 ? 'introduction' : $viewPrefix . ($id - 1);
+
+        return view($viewName, ['stageId' => $id]);
+    } else {
+        // Handle cases where the stage ID is out of range
+        return abort(404);
+    }
+})->middleware(['web', 'auth'])->name('stage');
 

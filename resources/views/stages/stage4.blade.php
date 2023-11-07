@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/stage.css">
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-    <title>Stage 3</title>
+    <title>Stage 4</title>
     <style>
         /* Add this CSS to style the green border for correct input */
         .correct-input {
@@ -28,10 +28,11 @@
     </style>
 </head>
 <body>
+
     <form id="progressForm">
         @csrf
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-        <input type="hidden" name="stage_id" value="4">
+        <input type="hidden" name="stage_id" value="5">
         <input type="hidden" name="score" id="score" value="100">
     </form>
 
@@ -51,7 +52,7 @@
 
         <div class="container">
             <div class="message">
-                <h3>A line that intersects at one point</h3>
+                <h3>A line passing through two points of a circle.</h3>
 
                 <div class="square-input-container">
                     <input class="square-input" type="text" maxlength="1" oninput="moveToNextInput(this, 1)">
@@ -60,13 +61,12 @@
                     <input class="square-input" type="text" maxlength="1" oninput="moveToNextInput(this, 4)">
                     <input class="square-input" type="text" maxlength="1" oninput="moveToNextInput(this, 5)">
                     <input class="square-input" type="text" maxlength="1" oninput="moveToNextInput(this, 6)">
-                    <input class="square-input" type="text" maxlength="1" oninput="moveToNextInput(this, 7)">
                 </div>
                 
             </div>
             
-        <!-- Add a hidden button initially -->
-        <button class="continue-btn" role="button" id="nextButton" type="submit" style="display: none;"><span class="text">Continue</span></button>
+            <!-- Add a hidden button initially -->
+            <button class="continue-btn" role="button" id="nextButton" type="submit" style="display: none;"><span class="text">Continue</span></button>
 
         </div>
     </main>
@@ -80,7 +80,7 @@
         let coinValue = 100;
 
         function moveToNextInput(currentInput, index) {
-            const answer = 'tangent';
+            const answer = 'secant';
             const inputText = currentInput.value.toLowerCase();
             
             if (inputText === answer.charAt(index - 1)) {
@@ -92,7 +92,7 @@
             }
             
             if (inputText.length === 1) {
-                if (index < 7) {
+                if (index < 6) {
                     const nextInput = document.getElementsByClassName('square-input')[index];
                     nextInput.focus();
                 }
@@ -125,14 +125,14 @@
             let allCorrect = true;
 
             for (let i = 0; i < inputs.length; i++) {
-                if (inputs[i].value.toLowerCase() !== 'tangent'.charAt(i)) {
+                if (inputs[i].value.toLowerCase() !== 'secant'.charAt(i)) {
                     allCorrect = false;
                     break;
                 }
             }
 
             if (allCorrect) {
-                coinValue = 200; // Set the coin value to 100
+                coinValue = 200;
                 document.getElementById('nextButton').style.display = 'flex'; // Show the button
             } else {
                 document.getElementById('nextButton').style.display = 'none'; // Hide the button
@@ -141,6 +141,7 @@
             // Update the displayed coin value
             document.getElementById('coinValue').textContent = coinValue;
         }
+
 
         const continueButton = document.getElementById('nextButton');
         continueButton.addEventListener('click', () => {

@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main_game.css">
+    <link rel="stylesheet" href="../css/main_game.css">
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-    <title>Main Game</title>
+    <title>Stage 5</title>
 </head>
 <body>
 
     <form id="progressForm">
         @csrf
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-        <input type="hidden" name="stage_id" value="1">
+        <input type="hidden" name="stage_id" value="6">
         <input type="hidden" name="score" id="score" value="100">
     </form>
 
@@ -23,25 +23,25 @@
 
         <!-- Rocket Animation Lottie -->
         <div class="rocket" id="rocket">
-            <dotlottie-player src="./lottie/rocket.json" background="transparent" speed="2" direction="1" mode="normal" loop autoplay></dotlottie-player>
+            <dotlottie-player src="../lottie/rocket.json" background="transparent" speed="2" direction="1" mode="normal" loop autoplay></dotlottie-player>
         </div>
 
         <div class="coin">
             <h3>Coins: <span id="coinValue">100</span></h3>
-            <img src="img/coins.png" alt="" srcset="">
+            <img src="../img/coins.png" alt="" srcset="">
         </div>
 
         <div class="container">
             <div class="instruction">
                 <h2>Complete the statement below</h2>
-                <img src="img/sample.png" alt="" srcset="">
+                <img src="../img/stage5.png" alt="" srcset="">
             </div>
 
             <!-- Questions Sections -->
             <div class="draggable-container">
                 <div class="draggable">
                     <h2>Drag the tangent line here</h2>
-                    <div class="drop-area" id="dropArea1" data-correct-answer="choice1"></div>
+                    <div class="drop-area" id="dropArea1" data-correct-answer="choice2"></div>
                 </div>
 
                 <div class="draggable">
@@ -56,16 +56,16 @@
         <!-- Choices Section -->
         <div class="choices-container">
             <div class="choices" id="choice1" draggable="true">
-                <h2>UV</h2>
+                <h2>XL</h2>
             </div>
             <div class="choices" id="choice2" draggable="true">
-                <h2>VY</h2>
+                <h2>XY</h2>
             </div>
             <div class="choices" id="choice3" draggable="true">
-                <h2>XV</h2>
+                <h2>YU</h2>
             </div>
             <div class="choices" id="choice4" draggable="true">
-                <h2>UY</h2>
+                <h2>LU</h2>
             </div>
 
             <!-- Add the Next button initially hidden -->
@@ -77,7 +77,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- Bootstrap JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script>
         const choices = document.querySelectorAll('.choices');
         const dropAreas = document.querySelectorAll('.drop-area');

@@ -162,8 +162,8 @@
         <section class="main-content content-transition hidden" id="profileContent">
             <div class="feature">
                 <div class="feature-title">
-                    <p>Welcome</p>
-                    <h3>TO OUR STAGE SELECTION</h3>
+                    <p>THIS IS PROFILE CONTENT</p>
+                    <h3>WORK IN PROGRESS</h3>
                 </div>
 
                 <div class="card">

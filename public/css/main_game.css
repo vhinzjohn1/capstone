@@ -121,7 +121,7 @@ main {
 
 .instruction img {
     margin-top: 10px;
-    max-width: 100%;
+    max-width: 60%;
     height: auto;
     border-radius: 10px;
 }
