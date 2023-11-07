@@ -24,6 +24,11 @@ main {
     transform: translateX(50%);
     z-index: 2;
 }
+.stage-number{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 .message{
     display: flex;
     align-items: center;
@@ -47,7 +52,7 @@ main {
     transform: scale(1.1); /* Apply the scale transformation on hover */
 }
 .choice{
-    width: calc(25% - 10px); /* 25% minus 10px gap between items */ 
+    width: calc(25% - 10px); /* 25% minus 10px gap between items */
     height: calc(25vh - 10px);
     background-size: cover;
     background-position: center;
@@ -107,6 +112,7 @@ main {
 .coin h3{
     margin: 15px;
     font-size: 1.4rem;
+    color: yellow;
 }
 @media (max-width: 768px) {
     .coin h3{
@@ -188,12 +194,12 @@ main {
     z-index: 10;
     display: none;
   }
-  
+
   .continue-btn:active,
   .continue-btn:hover {
     outline: 0;
   }
-  
+
   .continue-btn span {
     background-color: rgb(5, 6, 45);
     padding: 16px 24px;
@@ -202,11 +208,11 @@ main {
     height: 100%;
     transition: 300ms;
   }
-  
+
   .continue-btn:hover span {
     background: none;
   }
-  
+
   @media (min-width: 768px) {
     .continue-btn {
       font-size: 24px;
@@ -231,7 +237,7 @@ main {
 
 
 
-/* === BASE HEADING === */ 
+/* === BASE HEADING === */
 
 h1 {
     position: relative;
@@ -245,7 +251,7 @@ h1 {
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
   }
-  
+
   h1 span {
     display: block;
     font-size: 0.5em;
@@ -298,7 +304,7 @@ h1 {
     text-transform: uppercase; /* Force uppercase input */
     text-align: center;
 }
-  
-  
+
+
 
 
