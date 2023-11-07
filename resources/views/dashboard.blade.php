@@ -82,7 +82,7 @@
                     </div>
                     <div class="navbar-support">
                         <i class="fa-solid fa-circle-info" style="color: #20cf23;"></i>
-                        <a href="#leaderboards">Leaderboards</a>
+                        <a href="#leaderboards">LEADERBOARDS</a>
                     </div>
                 </div>
             </div>
@@ -143,17 +143,18 @@
                 <!-- Inside your gameContent section -->
                 <div class="card">
                     @foreach($stages as $stage)
-                        @if(isset($userProgress[$stage->id]) && $userProgress[$stage->id] && $userProgress[$stage->id]->completion_status == 1)
-                            <a href="{{ asset($stage->url) }}" class="stage-link unlocked">
-                                <i class="fa-solid fa-lock"></i><h3>{{ $stage->name }}</h3>
+                        @if(isset($userProgress[$stage->id]))
+                            <a href="{{ asset('/stages/' . $stage->id) }}" class="stage-link unlocked">
+                                <i class="fa-solid fa-unlock"></i><h3>{{ $stage->name }}</h3>
                             </a>
                         @else
-                            <a href="{{ asset($stage->url) }}" class="stage-link locked">
+                            <a href="{{ asset('/stages/' . $stage->id) }}" class="stage-link locked">
                                 <i class="fa-solid fa-lock"></i><h3>{{ $stage->name }}</h3>
                             </a>
                         @endif
                     @endforeach
                 </div>
+         
 
             </div>
         </section>

@@ -16,9 +16,15 @@ html{
     width: 40%;
     box-shadow: 0px 10px 20px black;
     transform: translate(75%, 50%);
-    display: none;
 }
-
+.stars-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h3{
+  color: black;
+}
 .button button {
     width: 100px;
     height: 2rem;
@@ -26,6 +32,9 @@ html{
 
 .button button:hover {
     background-color: #89CFF0;
+}
+.continue-btn-a{
+  text-decoration: none;
 }
 
 .modal-content {

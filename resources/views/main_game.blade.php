@@ -9,14 +9,16 @@
 </head>
 <body>
 
-    <form action="/update-progress" method="POST">
+    <form id="progressForm">
         @csrf
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-        <input type="hidden" name="stage_id" value="2"> <!-- Change this to the appropriate stage ID -->
+        <input type="hidden" name="stage_id" value="1">
         <input type="hidden" name="score" id="score" value="100">
-        
-    <main>
+    </form>
 
+    <main>
+    
+    <!-- including the modal for success -->
     @include('modals.success')
 
         <!-- Rocket Animation Lottie -->
@@ -47,7 +49,7 @@
                     <div class="drop-area" id="dropArea2" data-correct-answer="choice4"></div>
                 </div>
                 <!-- Coin Animation Element -->
-             <div class="coin-animation" id="coinAnimation"></div>
+                <div class="coin-animation" id="coinAnimation"></div>
             </div>
         </div>
 
@@ -67,13 +69,15 @@
             </div>
 
             <!-- Add the Next button initially hidden -->
-        <button class="continue-btn" role="button" id="nextButton" type="submit"><span class="text">Continue</span></button>
+            <button class="continue-btn" role="button" id="nextButton"><span class="text">Continue</span></button>
         </div>
 
     </main>
 
-    </form>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
     <script>
         const choices = document.querySelectorAll('.choices');
         const dropAreas = document.querySelectorAll('.drop-area');
@@ -96,7 +100,6 @@
         const scoreInput = document.getElementById('score');
         scoreInput.value = totalCoins;
 
-
         // Function to update and display the coin value
         function updateCoinValue() {
             const coinValueElement = document.getElementById('coinValue');
@@ -104,7 +107,7 @@
 
             // Update the hidden input field for "score"
             const scoreInput = document.getElementById('score');
-            scoreInput.value = totalCoins; // Update the "score" based on total coins
+            scoreInput.value = totalCoins;
         }
 
         // Update the coin value initially
@@ -119,7 +122,7 @@
             // Set a timeout to reset the opacity after a brief delay
             setTimeout(() => {
                 coinAnimationElement.style.opacity = 0;
-            }, 1000); // Adjust the duration as needed (1 second in this example)
+            }, 1000);
         }
 
         // Add a function to handle the choice drop
@@ -140,7 +143,6 @@
                 // Wrong answer, change the border color to red
                 dropArea.style.borderColor = 'red';
                 handleCorrectAnswerDrop();
-
             }
         }
 
@@ -154,31 +156,25 @@
 
             const blankDropAreas = Array.from(dropAreas).filter((area) => {
                 const choiceElement = area.querySelector('.choices');
-                return choiceElement.textContent.trim() === ""; // Check for empty content
+                return choiceElement.textContent.trim() === "";
             });
 
             // Calculate the total value based on the number of correct answers and blank areas
             if (correctDropAreas.length === 2) {
                 showCoinAnimation('+50');
-                // Both answers are correct
                 totalCoins = 150;
             } else if (correctDropAreas.length === 1 && blankDropAreas.length === 1) {
-                // One answer is correct, one is blank
                 totalCoins = 125;
             } else if (correctDropAreas.length >= 1) {
                 showCoinAnimation('+25');
-                // At least one answer is correct, others may be blank
                 totalCoins = 125;
             } else {
-                // Both answers are wrong
                 totalCoins = 100;
             }
 
             // Update the coin value display
             updateCoinValue();
         }
-
-
 
         // Add dragstart event listeners to draggable choices
         choices.forEach((choiceElement) => {
@@ -241,20 +237,55 @@
             }
         }
 
+        // Add an event listener to check for correct answers whenever a choice is dropped
+        dropAreas.forEach((dropArea) => {
+            dropArea.addEventListener('drop', () => {
+                showNextButton();
+            });
+        });
 
         // Add a variable to track whether the form was successfully submitted
         let formSubmitted = false;
 
-        // Add a click event listener to the Next button
-        const nextButton = document.getElementById('nextButton');
+        // Update the click event listener for the "Continue" button
+        $('#nextButton').click(function(e) {
+            e.preventDefault(); // Prevent the default form submission
 
-        // Add an event listener to check for correct answers whenever a choice is dropped
-        dropAreas.forEach((dropArea) => {
-            dropArea.addEventListener('drop', () => {
-                // Check for correct answers when a choice is dropped
-                showNextButton();
-            });
+            if (!formSubmitted && areAllAnswersCorrect()) {
+                formSubmitted = true; // Set the flag to prevent multiple submissions
+                const formData = $('#progressForm').serialize();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/update-progress',
+                    data: formData,
+                    success: function(data) {
+                        if (data.success) {
+                            // Progress updated successfully
+                            showSuccessModal();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error: ' + error);
+                        showErrorMessage('An error occurred: ' + error);
+                    }
+                });
+            }
         });
+
+
+        // Function to show the custom success modal
+        function showSuccessModal() {
+            // Show the custom success modal
+            $('#successModal').modal('show');
+        }
+
+        // Function to show an error message
+        function showErrorMessage(message) {
+            // You can customize this function to display your error message to the user
+            // For example, you can display an alert:
+            alert('Error: ' + message);
+        }
 
 
     </script>

@@ -355,9 +355,16 @@ main {
   display: flex;
   align-items: center;
   height: 5vh;
+  font-size: 1rem;
+
 }
 
 .navbar a:hover {
+  background-color: rgba(0, 0, 0, 0.199);
+  border-radius: 5px;
+  color: var(--secondary-color);
+}
+.navbar a:focus {
   background-color: rgba(0, 0, 0, 0.199);
   border-radius: 5px;
   color: var(--secondary-color);

@@ -10,26 +10,22 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
-    Schema::create('progress', function (Blueprint $table) {
-        $table->id();
-        $table->unsignedBigInteger('user_id');
-        $table->unsignedBigInteger('stage_id');
-        $table->integer('completion_status');
-        $table->integer('score');
-        $table->timestamp('completed_at')->nullable();
-        $table->timestamps();
+    {
+        Schema::create('progress', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->integer('completion_status');
+            $table->integer('score');
+            $table->timestamps();
 
-        $table->foreign('user_id')->references('id')->on('users');
-        $table->foreign('stage_id')->references('id')->on('stages');
-    });
-}
-
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+    }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('progress');
     }

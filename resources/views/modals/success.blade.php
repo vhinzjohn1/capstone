@@ -3,7 +3,7 @@
 
 <head>
     <!-- Add a link to your external CSS file -->
-    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="/css/modals.css">
 </head>
 
 <div id="successModal" class="modal">
@@ -11,9 +11,9 @@
         <h3>Stage 1 Completed</h3>
         <h3>CONGRATULATIONS</h3>
         <div class="stars-container">
-            <img src="src/images/star.svg" class="modal-star">
-            <img src="src/images/star.svg" class="modal-star">
-            <img src="src/images/star.svg" class="modal-star">
+            <img src="/src/images/star.svg" class="modal-star">
+            <img src="/src/images/star.svg" class="modal-star">
+            <img src="/src/images/star.svg" class="modal-star">
         </div>
         <a href="{{ route('dashboard') }}" id="okButton" class="continue-btn-a">
             <button class="next-btn"><span class="text">Next</span></button>    

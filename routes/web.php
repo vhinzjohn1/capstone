@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,16 +15,16 @@ Route::get('/signup', function () {
 
 
 Route::get('/login', function () {
+    if (Auth::check()) {
+        return redirect('/dashboard');
+    }
     return view('login');
 })->name('login');
 
+
 Route::post('/login', [UserController::class, 'login'])->name('login.post');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('web', 'auth')->name('dashboard');
-
-Route::get('/dashboard', [GameController::class, 'showDashboard'])->name('dashboard');
+Route::get('/dashboard', [GameController::class, 'showDashboard'])->middleware(['web', 'auth'])->name('dashboard');
 
 
 Route::get('/game_screen_introduction', function () {
@@ -49,4 +50,10 @@ Route::post('/signup', [UserController::class, 'register'])->name('register.post
 
 
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::get('/stages/{id}', function ($id) {
+    // Load the Blade template based on the stage ID
+    return view("stages.stage$id", ['stageId' => $id]);
+})->middleware(['web', 'auth'])->name('stage');
+
 
