@@ -27,15 +27,6 @@ Route::post('/login', [UserController::class, 'login'])->name('login.post');
 Route::get('/dashboard', [GameController::class, 'showDashboard'])->middleware(['web', 'auth'])->name('dashboard');
 
 
-Route::get('/game_screen_introduction', function () {
-    return view('game_screen_introduction');
-})->middleware('web', 'auth');
-
-Route::get('/main_game', function () {
-    return view('main_game');
-})->middleware(['web', 'auth'])->name('main_game');
-
-
 Route::get('/success', function () {
     return view('modals.success');
 })->middleware(['web', 'auth'])->name('success');

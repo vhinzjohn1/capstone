@@ -22,7 +22,7 @@
                     <i class="fa-solid fa-magnifying-glass" style="color: rgb(151, 149, 149);"></i>
                     <input type="text" placeholder="Search Here" class="text">
                 </div>
-                
+
                 <div class="avatar">
                     <img src="avatar.jpg" alt="" srcset="">
                     <div class="dropdown">
@@ -38,11 +38,11 @@
                             @csrf
                         </form>
                     </div>
-                    
+
                     </div>
                 </div>
-                
-                
+
+
             </div>
         </section>
 
@@ -54,8 +54,8 @@
                 </div>
                 <div class="upperside">
                     <img src="avatar.jpg" class="side-avatar">
-                    <h3>Vhinz Balinas</h3>
-                    <p>Student at CMU</p>
+                    <h3>{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</h3>
+                    <p>Student of QNHS</p>
                     <div class="icons">
                         <img src="src/images/achievements/medal.svg" class="icon">
                         <img src="src/images/achievements/trophy.svg" class="icon">
@@ -65,7 +65,7 @@
 
                 <!-- Add a horizontal line here -->
                 <hr class="separator">
-                
+
 
                 <div class="navbar">
                     <div class="navbar-dashboard">
@@ -91,22 +91,23 @@
 
         <section class="main-content content-transition" id="dashboardContent">
             <div class="overview">
-                <h2>134</h2>
+                <h2>{{ $userScore }}</h2>
                 <img src="src/images/achievements/trophy.svg" class="icon">
                 <div class="center"></div>
-                <h2>44</h2>
+                <h2>{{ count($userProgress) }}</h2>
                 <img src="src/images/achievements/game.svg" class="icon">
             </div>
 
+
             <div class="trivia">
                 <i class="fa-regular fa-circle-play" style="color: #ffffff;"></i>
-                <h3>ENTER TRIVIA</h3>
+                <h3>ENTER GAME</h3>
             </div>
 
             <div class="feature">
                 <div class="feature-title">
                     <p>DON'T MISS</p>
-                    <h3>OUR FEATURED GAMES</h3>
+                    <h3>OUR GAMES</h3>
                 </div>
 
                 <div class="card">
@@ -119,8 +120,8 @@
 
             <div class="feature">
                 <div class="feature-title">
-                    <p>THIS WEEK</p>
-                    <h3>MOST PLAYED GAMES</h3>
+                    <p></p>
+                    <h3>PLAYED GAMES</h3>
                 </div>
 
                 <div class="card">
@@ -154,48 +155,98 @@
                         @endif
                     @endforeach
                 </div>
-         
+
 
             </div>
         </section>
 
         <section class="main-content content-transition hidden" id="profileContent">
-            <div class="feature">
-                <div class="feature-title">
-                    <p>THIS IS PROFILE CONTENT</p>
-                    <h3>WORK IN PROGRESS</h3>
+            <div class="user-info">
+                <div class="info-title">
+                    <p>PROFILE INFORMATION</p>
+                    <h3>User Details</h3>
                 </div>
 
-                <div class="card">
-                    <div class="stage"></div>
-                    <div class="stage"></div>
-                    <div class="stage"></div>
-                    
+                <div class="card-user-detail">
+                    <div class="user-detail">
+                        <strong>First Name:</strong> {{ auth()->user()->first_name }}
+                    </div>
+                    <div class="user-detail">
+                        <strong>Last Name:</strong> {{ auth()->user()->last_name }}
+                    </div>
+                    <div class="user-detail">
+                        <strong>Email:</strong> {{ auth()->user()->email }}
+                    </div>
+                    <div class="user-detail">
+                        <strong>Username:</strong> {{ auth()->user()->username }}
+                    </div>
                 </div>
             </div>
         </section>
+
+        <section class="main-content content-transition hidden" id="leaderboardsContent">
+            <div class="leaderboards">
+                <div class="leaderboards-title">
+                    <h3>LEADERBOARDS</h3>
+                </div>
+                <div class="leaderboards-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Score</th>
+                                <th>Completed Stages</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($leaderboardData as $user)
+                                <tr>
+                                    <td>{{ $user->username }}</td>
+                                    <td>{{ $user->user_score }}</td>
+                                    <td>{{ $user->completed_stages_count }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+
     </main>
-    
+
     <script>
         const mainContent = document.getElementById('mainContent');
         const gameContent = document.getElementById('gameContent');
         const profileContent = document.getElementById('profileContent');
         const dashboardContent = document.getElementById('dashboardContent');
+        const leaderboardsContent = document.getElementById('leaderboardsContent');
         const navbarGame = document.querySelector('.navbar-game');
         const navbarProfile = document.querySelector('.navbar-profile');
         const navbarDashboard = document.querySelector('.navbar-dashboard');
+        const navbarLeaderboards = document.querySelector('.navbar-support');
 
-        // Function to switch to the game content with animation
+        /// Function to switch to the game content with animation
         function switchToGameContent() {
             dashboardContent.classList.add('hidden');
             gameContent.classList.remove('hidden');
             profileContent.classList.add('hidden');
+            leaderboardsContent.classList.add('hidden'); // Hide leaderboards
         }
 
         function switchToProfileContent() {
             dashboardContent.classList.add('hidden');
             gameContent.classList.add('hidden');
             profileContent.classList.remove('hidden');
+            leaderboardsContent.classList.add('hidden'); // Hide leaderboards
+        }
+
+        function switchToLeaderboardsContent() {
+            dashboardContent.classList.add('hidden');
+            gameContent.classList.add('hidden');
+            profileContent.classList.add('hidden');
+            leaderboardsContent.classList.remove('hidden'); // Show leaderboards
         }
 
         // Function to switch back to the default dashboard content with animation
@@ -203,7 +254,9 @@
             dashboardContent.classList.remove('hidden');
             gameContent.classList.add('hidden');
             profileContent.classList.add('hidden');
+            leaderboardsContent.classList.add('hidden'); // Hide leaderboards
         }
+
 
         // Get the dropdown button and content
         const dropdownButton = document.querySelector('.dropbtn');
@@ -226,6 +279,7 @@
         navbarGame.addEventListener('click', switchToGameContent);
         navbarProfile.addEventListener('click', switchToProfileContent);
         navbarDashboard.addEventListener('click', switchToDefaultContent);
+        navbarLeaderboards.addEventListener('click', switchToLeaderboardsContent);
 
 
         // Check if the URL contains the #gameContent fragment and switch to game section

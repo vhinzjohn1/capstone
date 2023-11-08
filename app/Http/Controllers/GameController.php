@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Progress;
+use App\Models\User;
 use App\Models\Stage;
 use App\Models\CompletedStage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
-
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {
@@ -19,43 +21,57 @@ class GameController extends Controller
             'stage_id' => 'required|integer',
             'score' => 'required|integer',
         ]);
-    
+
         // Update progress and completed stages
         $userId = $validatedData['user_id'];
         $stageId = $validatedData['stage_id'];
         $score = $validatedData['score'];
-    
+
         Progress::updateOrCreate(
             ['user_id' => $userId],
             ['score' => $score, 'completion_status' => 1]
         );
-    
+
         CompletedStage::updateOrCreate(
             ['user_id' => $userId, 'stage_id' => $stageId]
         );
-    
+
         // Return a JSON response indicating success
         return new JsonResponse(['success' => true]);
     }
 
 
     public function showDashboard()
-    {
-        // Fetch all stages
-        $stages = Stage::all();
+{
+    // Fetch all stages
+    $stages = Stage::all();
 
-        // Fetch user progress from CompletedStage model
-        $completedStages = CompletedStage::where('user_id', auth()->id())->get();
+    // Fetch user progress from Progress model
+    $userProgressRecord = Progress::where('user_id', auth()->id())->first();
 
-        // Create an array to track user progress for each stage
-        $userProgress = [];
+    // Fetch user progress from CompletedStage model
+    $completedStages = CompletedStage::where('user_id', auth()->id())->get();
 
-        // Map the completed stages into the $userProgress array for quick access
-        foreach ($completedStages as $completedStage) {
-            $userProgress[$completedStage->stage_id] = $completedStage;
-        }
+    // Create an array to track user progress for each stage
+    $userProgress = [];
 
-        return view('dashboard', compact('userProgress', 'stages'));
+    // Map the completed stages into the $userProgress array for quick access
+    foreach ($completedStages as $completedStage) {
+        $userProgress[$completedStage->stage_id] = $completedStage;
     }
-    
+
+    // Retrieve the user's score from the progress record
+    $userScore = $userProgressRecord ? $userProgressRecord->score : 0;
+
+    // Fetch leaderboard data
+    $leaderboardData = User::select('users.username', 'progress.score as user_score', DB::raw('COUNT(completed_stages.id) as completed_stages_count'))
+        ->leftJoin('completed_stages', 'users.id', '=', 'completed_stages.user_id')
+        ->leftJoin('progress', 'users.id', '=', 'progress.user_id')
+        ->groupBy('users.username', 'progress.score')
+        ->orderByDesc('user_score')
+        ->get();
+
+    return view('dashboard', compact('userProgress', 'stages', 'userScore', 'leaderboardData'));
+}
+
 }
