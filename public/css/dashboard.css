@@ -410,9 +410,6 @@ main {
 }
 
 /* CSS for User Details in the Profile section */
-
-
-
 .user-info{
     display: flex;
     align-items: center;
@@ -427,3 +424,27 @@ main {
     margin: 20px;
     font-size: 1.1rem;
 }
+
+
+/* CSS for Leaderboards Section */
+
+.leaderboards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255, 0.3));
+    border-radius: 15px;
+    z-index: 3;
+    backdrop-filter: blur(0.2rem);
+    width: 50%;
+    box-shadow: 0px 10px 20px black;
+}
+
+.leaderboards-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
