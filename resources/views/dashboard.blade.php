@@ -19,7 +19,7 @@
                     <h3>DASHBOARD</h3>
                 </div>
                 <div class="search">
-                    <i class="fa-solid fa-magnifying-glass" style="color: rgb(151, 149, 149);"></i>
+                    <i class="fa-solid fa-magnifying-glass" style="color: black;"></i>
                     <input type="text" placeholder="Search Here" class="text">
                 </div>
 

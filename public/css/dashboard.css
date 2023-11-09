@@ -145,7 +145,6 @@ main {
 /* Topbar Styling and CSS */
 .topbar {
   width: 100%;
-  height: 8%;
   position: absolute;
   z-index: 3;
   /* Add a subtle shadow to enhance the fade effect */
@@ -168,17 +167,18 @@ main {
   justify-content: center;
   border: 1px solid rgb(218, 216, 216);
   width: 25%;
-  height: 5vh;
+  height: 3vh;
 }
 
 .text {
   outline: none;
   border: none;
-  height: 3.75vh;
+  height: 3vh;
   background-color: rgba(241, 241, 241, 0.445);
   color: black;
   text-align: center;
   border-radius: 10px;
+  width: 80%;
 }
 
 .fa-regular,
