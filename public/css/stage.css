@@ -38,6 +38,7 @@ main {
 .message h3{
     font-size: 1.5rem;
     margin: 20px;
+    color: white;
 }
 /* choice section styling */
 .choices{
