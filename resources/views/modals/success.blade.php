@@ -8,7 +8,7 @@
 
 <div id="successModal" class="modal">
     <div class="modal-content">
-        <h3>Stage 1 Completed</h3>
+        <h3>Stage Completed</h3>
         <h3>CONGRATULATIONS</h3>
         <div class="stars-container">
             <img src="/src/images/star.svg" class="modal-star">
@@ -16,7 +16,7 @@
             <img src="/src/images/star.svg" class="modal-star">
         </div>
         <a href="{{ route('dashboard') }}" id="okButton" class="continue-btn-a">
-            <button class="next-btn"><span class="text">Next</span></button>    
+            <button class="next-btn"><span class="text">Next</span></button>
         </a>
     </div>
 </div>
