@@ -76,11 +76,18 @@
                         <p id="message1"><span></span></p>
                         <button class="next-button" id="nextButton" style="display: none" onclick="changeMessage()">Next</button>
                     </div>
+                        {{-- Progress indicator section --}}
+                    <div class="progress-indicator">
+                        <p id="progress">1/4</p>
+                    </div>
                 </div>
     
                 <div class="astronaut" id="astronaut">
                     <dotlottie-player src="../lottie/astronaut.json" background="transparent" speed="2" direction="1" mode="normal" loop autoplay></dotlottie-player>
                 </div>
+
+                
+
             </div>
 
         </div>
@@ -139,8 +146,15 @@
         }
     
         function changeMessage() {
+            const progressIndicator = document.getElementById('progress');
+
             if (currentMessageIndex < messages.length - 1) {
                 currentMessageIndex++;
+
+                // Update the progress indicator
+                const progressValue = `${currentMessageIndex + 1}/${messages.length}`;
+                progressIndicator.innerHTML = progressValue;
+
                 messageContainer.innerHTML = '';
                 cursor.style.left = '0';
                 nextButton.style.display = 'none';
