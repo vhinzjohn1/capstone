@@ -86,7 +86,7 @@ function shuffleCard() {
         card.classList.remove("flip");
         let imgTag = card.querySelector(".back-view img");
         setTimeout(() => {
-            imgTag.src = `images/img-${arr[index]}.png`;
+            imgTag.src = `../stage-css/img-${arr[index]}.png`;
         }, 500);
         card.addEventListener("click", flipCard);
     });

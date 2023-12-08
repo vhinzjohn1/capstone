@@ -19,98 +19,98 @@
       <ul class="cards">
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-1.png" alt="card-img">
+            <img src="../stage-css/img-1.png" alt="card-img">
           </div>
         </li>        
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-2.png" alt="card-img">
+            <img src="../stage-css/img-2.png" alt="card-img">
           </div>
         </li>
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-3.png" alt="card-img">
+            <img src="../stage-css/img-3.png" alt="card-img">
           </div>
         </li>
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-4.png" alt="card-img">
+            <img src="../stage-css/img-4.png" alt="card-img">
           </div>
         </li>
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-5.png" alt="card-img">
+            <img src="../stage-css/img-5.png" alt="card-img">
           </div>
         </li>
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-6.png" alt="card-img">
+            <img src="../stage-css/img-6.png" alt="card-img">
           </div>
         </li>
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-5.png" alt="card-img">
+            <img src="../stage-css/img-5.png" alt="card-img">
           </div>
         </li>
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-6.png" alt="card-img">
+            <img src="../stage-css/img-6.png" alt="card-img">
           </div>
         </li>
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-1.png" alt="card-img">
+            <img src="../stage-css/img-1.png" alt="card-img">
           </div>
         </li>
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-2.png" alt="card-img">
+            <img src="../stage-css/img-2.png" alt="card-img">
           </div>
         </li>
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="../img/img-3.png" alt="card-img">
+            <img src="../stage-css/img-3.png" alt="card-img">
           </div>
         </li>
         <li class="card">
           <div class="view front-view">
-            <img src="../img/que_icon.svg" alt="icon">
+            <img src="../stage-css/que_icon.svg" alt="icon">
           </div>
           <div class="view back-view">
-            <img src="img/img-4.png" alt="card-img">
+            <img src="../stage-css/img-4.png" alt="card-img">
           </div>
         </li>
         <div class="details">
@@ -135,7 +135,7 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="script.js"></script>
+    <script src="../stage-css/script.js"></script>
     
   </body>
 </html>

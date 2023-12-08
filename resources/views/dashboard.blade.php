@@ -1,4 +1,4 @@
-pp<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -141,18 +141,25 @@ pp<!DOCTYPE html>
                     <h3>TO OUR STAGE SELECTION</h3>
                 </div>
 
+                @php
+                    $unlockedStages = count($userProgress);
+                @endphp
+
                 <!-- Inside your gameContent section -->
                 <div class="card">
                     @foreach($stages as $stage)
-                        @if(isset($userProgress[$stage->id]))
-                            <a href="{{ asset('/stages/' . $stage->id) }}" class="stage-link unlocked">
-                                <i class="fa-solid fa-unlock"></i><h3>{{ $stage->name }}</h3>
-                            </a>
-                        @else
-                            <a href="{{ asset('/stages/' . $stage->id) }}" class="stage-link locked">
-                                <i class="fa-solid fa-lock"></i><h3>{{ $stage->name }}</h3>
-                            </a>
-                        @endif
+                        @php
+                            $isCompleted = isset($userProgress[$stage->id]);
+                            $isNextUnlocked = isset($userProgress[$stage->id - 1]);
+                            $isUnlocked = $isCompleted || $isNextUnlocked;
+                        @endphp
+
+                        <a href="{{ asset('/stages/' . $stage->id) }}" 
+                        class="stage-link {{ $isCompleted ? 'completed' : ($isUnlocked ? 'unlocked' : 'locked') }}"
+                        onclick="{{ $isUnlocked ? '' : 'showLockedModal()' }}">
+                            <i class="fa-solid {{ $isCompleted ? 'fa-check' : ($isUnlocked ? 'fa-unlock' : 'fa-lock') }}"></i>
+                            <h3>{{ $stage->name }}</h3>
+                        </a>
                     @endforeach
                 </div>
 
@@ -289,5 +296,13 @@ pp<!DOCTYPE html>
             }
         });
     </script>
+
+
+<script>
+    function showLockedModal() {
+        // Implement logic to show a modal for locked stages
+        alert('This stage is locked. You cannot play it yet.');
+    }
+</script>
 </body>
 </html>

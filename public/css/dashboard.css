@@ -117,6 +117,27 @@ main {
 }
 
 
+/* Add these styles to your CSS file */
+
+/* Completed stage style */
+.stage-link.completed {
+  background-color: gold;
+  color: black; /* Adjust text color as needed */
+}
+
+/* Unlocked stage style */
+.stage-link.unlocked {
+  background-color: green;
+  color: white; /* Adjust text color as needed */
+}
+
+/* Locked stage style */
+.stage-link.locked {
+  background-color: gray;
+  color: white; /* Adjust text color as needed */
+}
+
+
 .stage-link {
   position: relative;
   width: calc(25% - 10px);
