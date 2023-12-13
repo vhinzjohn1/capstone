@@ -7,52 +7,11 @@
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+2:400,800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-    <link rel="stylesheet" href="dist/css/style.css">
     <script src="https://kit.fontawesome.com/9a20ced4b7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <main>
-        <section class="hero1">
-            <div class="hero-inner1">
-                <!-- animation effect for hero section -->
-                <div class="hero-figure anime-element">
-                    <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
-                        <rect width="528" height="396" style="fill:transparent;" />
-                    </svg>
-                    <div class="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
-                    <div class="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
-                    <div class="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
-                    <div class="hero-figure-box hero-figure-box-04" data-rotation="-135deg"></div>
-                    <div class="hero-figure-box hero-figure-box-05"></div>
-                    <div class="hero-figure-box hero-figure-box-06"></div>
-                    <div class="hero-figure-box hero-figure-box-07"></div>
-                    <div class="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
-                    <div class="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
-                    <div class="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
-                </div>
-            </div>
-        </div>
-            <div class="container">
-                <div class="hero-inner">
-                    <!-- animation effect for hero section -->
-                    <div class="hero-figure anime-element">
-                        <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
-                            <rect width="528" height="396" style="fill:transparent;" />
-                        </svg>
-                        <div class="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
-                        <div class="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
-                        <div class="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
-                        <div class="hero-figure-box hero-figure-box-04" data-rotation="-135deg"></div>
-                        <div class="hero-figure-box hero-figure-box-05"></div>
-                        <div class="hero-figure-box hero-figure-box-06"></div>
-                        <div class="hero-figure-box hero-figure-box-07"></div>
-                        <div class="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
-                        <div class="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
-                        <div class="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <section class="glass">
             <!-- Introduction Section -->
             <div class="left-section">
@@ -60,7 +19,7 @@
                     <dotlottie-player src="./lottie/astro.json" background="transparent" speed="1" direction="2" mode="normal" loop autoplay></dotlottie-player>
                 </div>
 
-                <div class="signup-btn"><i class="fa-solid fa-user-plus" style="color: #24385b;"></i><a href="{{ asset('signup') }}">Create an Account Here</a></div>
+                <div class="signup-btn"><i class="fa-solid fa-user-plus link" style="color: #24385b;"></i><a href="{{ asset('signup') }}">Create an Account Here</a></div>
 
             </div>
             <div class="right-section">

@@ -6,11 +6,15 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+.link{
+    height: 1.8rem;
+    font-size: 2rem;
+}
 main{
     /* background-image: url(../background.jpg);
     background-repeat: no-repeat;
     background-size: cover; */
-    background-color: #91aee4;
+    background-image: url(../img/space2.png);
     height: 100vh;
     display: flex;
     align-items: center;

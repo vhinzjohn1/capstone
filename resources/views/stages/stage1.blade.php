@@ -51,8 +51,8 @@
                 <div class="choice" id="choice8" style="background-image: url(../img/secant3.png);">CHOICE 8</div>
             </div>
 
-
             <button class="continue-btn" role="button" id="nextButton" type="submit"><span class="text">Continue</span></button>
+
         </div>
 
     </main>
@@ -82,42 +82,43 @@
             choice.addEventListener('click', () => {
                 const choiceId = choice.id;
     
-                if (selectedChoices.length < 3) {
-                    if (selectedChoices.includes(choiceId)) {
-                        selectedChoices = selectedChoices.filter(id => id !== choiceId);
-                    } else {
+                if (selectedChoices.includes(choiceId)) {
+                    // Deselect the choice
+                    selectedChoices = selectedChoices.filter(id => id !== choiceId);
+                } else {
+                    if (selectedChoices.length < 3) {
                         selectedChoices.push(choiceId);
                     }
+                }
     
-                    choices.forEach(c => c.classList.remove('selected', 'correct', 'wrong'));
-                    selectedChoices.forEach(id => {
-                        const choiceElement = document.getElementById(id);
-                        choiceElement.classList.add('selected');
+                // Remove all selected labels from choices
+                choices.forEach(c => {
+                    const labels = c.querySelectorAll('.selected-label');
+                    labels.forEach(label => label.remove());
+                });
     
-                        const isCorrect = isCorrectChoice(id);
-                        if (isCorrect) {
-                            choiceElement.classList.add('correct');
-                        } else {
-                            choiceElement.classList.add('wrong');
-                        }
-                    });
-    
-                    // Check if all 3 correct answers are selected
-                    if (selectedChoices.length === 3) {
-                        const allCorrect = selectedChoices.every(id => isCorrectChoice(id));
-    
-                        const continueButton = document.getElementById('nextButton');
-                        if (allCorrect) {
-                            continueButton.style.display = 'flex';
-                            totalCoins += 25 * selectedChoices.length; // Add 25 coins for each correct choice
-                            updateCoinValue(); // Update the coin value
-                        } else {
-                            continueButton.style.display = 'none';
-                        }
+                selectedChoices.forEach(id => {
+                    const choiceElement = document.getElementById(id);
+                    const isCorrect = isCorrectChoice(id);
+                    if (isCorrect) {
+                        choiceElement.classList.add('correct');
                     } else {
-                        const continueButton = document.getElementById('nextButton');
-                        continueButton.style.display = 'none';
+                        choiceElement.classList.add('wrong');
                     }
+    
+                    // Add a text label on top of the selected choice
+                    const label = document.createElement('div');
+                    label.classList.add('selected-label');
+                    label.textContent = 'Selected';
+                    choiceElement.appendChild(label);
+                });
+    
+                // Check if all 3 choices are selected
+                const continueButton = document.getElementById('nextButton');
+                if (selectedChoices.length === 3) {
+                    continueButton.style.display = 'flex';
+                } else {
+                    continueButton.style.display = 'none';
                 }
             });
         });
@@ -125,31 +126,31 @@
         const continueButton = document.getElementById('nextButton');
         continueButton.addEventListener('click', () => {
             formSubmitted = true; // Set the flag to prevent multiple submissions
-                const formData = $('#progressForm').serialize();
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/update-progress',
-                    data: formData,
-                    success: function(data) {
-                        if (data.success) {
-                            // Progress updated successfully
-                            showSuccessModal();
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error: ' + error);
-                        showErrorMessage('An error occurred: ' + error);
+            const formData = $('#progressForm').serialize();
+    
+            $.ajax({
+                type: 'POST',
+                url: '/update-progress',
+                data: formData,
+                success: function (data) {
+                    if (data.success) {
+                        // Progress updated successfully
+                        showSuccessModal();
                     }
-                });
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error: ' + error);
+                    showErrorMessage('An error occurred: ' + error);
+                }
+            });
         });
-
+    
         // Function to show the custom success modal
         function showSuccessModal() {
             // Show the custom success modal
             $('#successModal').modal('show');
         }
-
+    
         // Function to show an error message
         function showErrorMessage(message) {
             // You can customize this function to display your error message to the user
@@ -157,7 +158,6 @@
             alert('Error: ' + message);
         }
     </script>
-    
     
 </body>
 </html>

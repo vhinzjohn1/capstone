@@ -19,7 +19,7 @@
                     <h3>DASHBOARD</h3>
                 </div>
                 <div class="search">
-                    <i class="fa-solid fa-magnifying-glass" style="color: black;"></i>
+                    <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
                     <input type="text" placeholder="Search Here" class="text">
                 </div>
 
@@ -27,7 +27,7 @@
                     <img src="avatar.jpg" alt="" srcset="">
                     <div class="dropdown">
                     <button class="dropbtn" onclick="myFunction()">
-                        <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-caret-down" style="color: white"></i>
                     </button>
                     <div class="dropdown-content" id="myDropdown">
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -156,10 +156,11 @@
 
                         <a href="{{ asset('/stages/' . $stage->id) }}" 
                         class="stage-link {{ $isCompleted ? 'completed' : ($isUnlocked ? 'unlocked' : 'locked') }}"
-                        onclick="{{ $isUnlocked ? '' : 'showLockedModal()' }}">
+                        onclick="{{ $isUnlocked ? '' : 'showLockedModal(); return false;' }}">
                             <i class="fa-solid {{ $isCompleted ? 'fa-check' : ($isUnlocked ? 'fa-unlock' : 'fa-lock') }}"></i>
                             <h3>{{ $stage->name }}</h3>
                         </a>
+
                     @endforeach
                 </div>
 

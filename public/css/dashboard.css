@@ -20,7 +20,7 @@ html{
 
 main {
   height: 100vh;
-  background-color: var(--main-background-color);
+  background-image: url(../img/space2.png);
 }
 
 .main-content {
@@ -292,13 +292,14 @@ main {
 
 /* Sidebar Styling and CSS */
 .sidebar {
+  z-index: 10;
   position: absolute;
   top: 0; /* Position it at the top */
   left: 0; /* Position it at the left */
   height: 100vh;
   width: 13%;
   background-color: var(--sidebar-color);
-  box-shadow: 0 10px 30px rgba(241, 240, 240, 0.692);
+  box-shadow: 1px 5px 10px rgba(241, 240, 240, 0.692);
 }
 
 .logo {
@@ -408,7 +409,7 @@ main {
 
 /* Apply animations to the elements */
 .content-transition {
-  animation: contentSlideIn 0.3s ease-in-out forwards;
+  animation: contentSlideIn 0.4s ease-in-out forwards;
 }
 
 .main-content {
@@ -417,6 +418,7 @@ main {
 
 /* Hide content by default */
 .hidden {
+  z-index: 1;
   transform: translateX(-100%);
   box-shadow: 0 0 10px 10px rgba(138, 138, 138, 0.7);
   display: none;
@@ -425,7 +427,7 @@ main {
 /* Add CSS animations for left-to-right transition */
 @keyframes contentSlideIn {
   from {
-    transform: translateX(-80%);
+    transform: translateX(-100%);
     box-shadow: 0 0 10px 10px rgba(107, 107, 107, 0.7);
   }
   to {
