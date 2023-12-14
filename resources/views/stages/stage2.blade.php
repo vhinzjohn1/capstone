@@ -77,40 +77,37 @@
         }
     
         choices.forEach(choice => {
-            choice.addEventListener('click', () => {
+                choice.addEventListener('click', () => {
                 const choiceId = choice.id;
-    
+
                 if (selectedChoices.includes(choiceId)) {
                     // Deselect the choice
                     selectedChoices = selectedChoices.filter(id => id !== choiceId);
+                    // Remove selected label and animation class
+                    const label = choice.querySelector('.selected-label');
+                    if (label) {
+                        label.remove();
+                    }
+                    choice.classList.remove('correct', 'wrong');
                 } else {
                     if (selectedChoices.length < 3) {
                         selectedChoices.push(choiceId);
+
+                        // Add a text label on top of the selected choice
+                        const label = document.createElement('div');
+                        label.classList.add('selected-label');
+                        label.textContent = 'Selected';
+                        choice.appendChild(label);
+
+                        const isCorrect = isCorrectChoice(choiceId);
+                        if (isCorrect) {
+                            choice.classList.add('correct');
+                        } else {
+                            choice.classList.add('wrong');
+                        }
                     }
                 }
-    
-                // Remove all selected labels from choices
-                choices.forEach(c => {
-                    const labels = c.querySelectorAll('.selected-label');
-                    labels.forEach(label => label.remove());
-                });
-    
-                selectedChoices.forEach(id => {
-                    const choiceElement = document.getElementById(id);
-                    const isCorrect = isCorrectChoice(id);
-                    if (isCorrect) {
-                        choiceElement.classList.add('correct');
-                    } else {
-                        choiceElement.classList.add('wrong');
-                    }
-    
-                    // Add a text label on top of the selected choice
-                    const label = document.createElement('div');
-                    label.classList.add('selected-label');
-                    label.textContent = 'Selected';
-                    choiceElement.appendChild(label);
-                });
-    
+
                 // Check if all 3 choices are selected
                 const continueButton = document.getElementById('nextButton');
                 if (selectedChoices.length === 3) {

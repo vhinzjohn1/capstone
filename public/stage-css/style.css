@@ -15,7 +15,8 @@ body{
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(-225deg, #2193b0 0%, #6dd5ed 100%);
+  background-image: url(../img/space2.png);
+  background-size: cover;
 }
 
 /* Right section */
@@ -29,7 +30,7 @@ body{
 
 .wrapper{
   padding: 25px;
-  background: #f8f8f8;
+  background: rgba(121, 120, 120, 0.589);
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }

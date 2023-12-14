@@ -79,16 +79,32 @@ main {
 } */
 .selected-label {
     position: absolute;
-    background-color: rgba(161, 154, 154, 0.8);
+    background: linear-gradient(to right, rgba(0, 0, 255, 0.7) 0%, rgba(128, 0, 128, 0.7) 50%, rgba(255, 192, 203, 0.7) 100%);
+
     border-radius: 8px;
     font-size: 1.4rem;
-    color: black;
+    color: rgb(0, 0, 0);
     width: 90%;
     height: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: wave 1.5s forwards;
 }
+@keyframes wave {
+    0% {
+      width: 0;
+      opacity: 1;
+    }
+    50% {
+      width: 90%;
+      opacity: 1;
+    }
+    100% {
+      width: 90%;
+      opacity: 1;
+    }
+  }
 
 .rocket{
     position: absolute;
