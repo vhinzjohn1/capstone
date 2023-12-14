@@ -118,19 +118,7 @@
                 </div>
             </div>
 
-            <div class="feature">
-                <div class="feature-title">
-                    <p></p>
-                    <h3>PLAYED GAMES</h3>
-                </div>
-
-                <div class="card">
-                    <div class="game2"></div>
-                    <div class="game2"></div>
-                    <div class="game2"></div>
-                    <div class="game2"></div>
-                </div>
-            </div>
+            
 
         </section>
 
