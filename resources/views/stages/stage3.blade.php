@@ -28,6 +28,10 @@
     </style>
 </head>
 <body>
+
+    {{-- Include the cursor animation --}}
+    @include('cursor.cursor-animation')
+    
     <form id="progressForm">
         @csrf
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">

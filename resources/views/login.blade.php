@@ -10,6 +10,9 @@
     <script src="https://kit.fontawesome.com/9a20ced4b7.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    {{-- Include the cursor animation --}}
+    @include('cursor.cursor-animation')
+    
     <main>
         
         <section class="glass">

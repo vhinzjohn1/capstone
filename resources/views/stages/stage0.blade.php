@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/dist/css/style.css">
 </head>
 <body>
+    {{-- Include the cursor animation --}}
+    @include('cursor.cursor-animation')
 
     <form id="progressForm">
         @csrf

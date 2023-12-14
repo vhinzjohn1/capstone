@@ -10,6 +10,10 @@
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>
+    {{-- Include the cursor animation --}}
+    @include('cursor.cursor-animation')
+
+
     <!-- This is my dashboard page -->
     <main>
         <section class="topbar">
@@ -111,10 +115,10 @@
                 </div>
 
                 <div class="card">
-                    <div class="game1"></div>
-                    <div class="game1"></div>
-                    <div class="game1"></div>
-                    <div class="game1"></div>
+                    <div class="game game1"></div>
+                    <div class="game game3"></div>
+                    <div class="game game4"></div>
+                    <div class="game game1"></div>
                 </div>
             </div>
 
@@ -145,7 +149,7 @@
                         <a href="{{ asset('/stages/' . $stage->id) }}" 
                         class="stage-link {{ $isCompleted ? 'completed' : ($isUnlocked ? 'unlocked' : 'locked') }}"
                         onclick="{{ $isUnlocked ? '' : 'showLockedModal(); return false;' }}">
-                            <i class="fa-solid {{ $isCompleted ? 'fa-check' : ($isUnlocked ? 'fa-unlock' : 'fa-lock') }}"></i>
+                            <i class="fa-solid {{ $isCompleted ? 'fa-award' : ($isUnlocked ? 'fa-unlock' : 'fa-lock') }}"></i>
                             <h3>{{ $stage->name }}</h3>
                         </a>
 
@@ -208,8 +212,7 @@
             </div>
         </section>
 
-
-
+ 
     </main>
 
     <script>

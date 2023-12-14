@@ -12,6 +12,10 @@
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 </head>
 <body class="is-boxed has-animations">
+
+    {{-- Include the cursor animation --}}
+    @include('cursor.cursor-animation')
+    
     <div class="body-wrap">
         <header class="site-header">
             <div class="container">

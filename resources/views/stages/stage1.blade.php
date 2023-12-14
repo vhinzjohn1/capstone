@@ -8,6 +8,8 @@
     <title>Stage 1</title>
 </head>
 <body>
+    {{-- Include the cursor animation --}}
+    @include('cursor.cursor-animation')
 
     <form id="progressForm">
         @csrf

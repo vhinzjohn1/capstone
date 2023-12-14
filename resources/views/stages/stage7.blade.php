@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
+    
+    {{-- Include the cursor animation --}}
+    @include('cursor.cursor-animation')
 
     <!-- Rocket Animation Lottie -->
     <div class="rocket" id="rocket">

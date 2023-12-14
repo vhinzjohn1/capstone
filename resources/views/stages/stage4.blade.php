@@ -28,6 +28,8 @@
     </style>
 </head>
 <body>
+    {{-- Include the cursor animation --}}
+    @include('cursor.cursor-animation')
 
     <form id="progressForm">
         @csrf
