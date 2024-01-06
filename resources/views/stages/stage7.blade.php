@@ -5,18 +5,18 @@
     <meta charset="utf-8">  
     <title>Memory Card Game</title>
     <link rel="stylesheet" href="../stage-css/style.css">
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    {{-- <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    
+
     {{-- Include the cursor animation --}}
     @include('cursor.cursor-animation')
 
-    <!-- Rocket Animation Lottie -->
+    {{-- <!-- Rocket Animation Lottie -->
     <div class="rocket" id="rocket">
       <dotlottie-player src="../lottie/rocket.json" background="transparent" speed="2" direction="1" mode="normal" loop autoplay></dotlottie-player>
-  </div>
+  </div> --}}
 
     <div class="wrapper">
       <ul class="cards">

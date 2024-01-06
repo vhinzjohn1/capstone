@@ -23,7 +23,7 @@
                     <h3>DASHBOARD</h3>
                 </div>
                 <div class="search">
-                    <i class="fa-solid fa-magnifying-glass" style="color: white;"></i>
+                    <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                     <input type="text" placeholder="Search Here" class="text">
                 </div>
 
@@ -88,10 +88,15 @@
                         <i class="fa-solid fa-circle-info" style="color: #20cf23;"></i>
                         <a href="#leaderboards">LEADERBOARDS</a>
                     </div>
+                    <div class="navbar-module">
+                        <i class="fa-solid fa-circle-info" style="color: #453ae6;"></i>
+                        <a href="#module">MODULE</a>
+                    </div>
                 </div>
             </div>
         </section>
 
+        {{-- Section for Main Dasboard Content --}}
 
         <section class="main-content content-transition" id="dashboardContent">
             <div class="overview">
@@ -126,6 +131,8 @@
 
         </section>
 
+        {{-- Section for Game Content  --}}
+
         <section class="main-content content-transition hidden" id="gameContent">
             <div class="feature">
                 <div class="feature-title">
@@ -143,7 +150,12 @@
                         @php
                             $isCompleted = isset($userProgress[$stage->id]);
                             $isNextUnlocked = isset($userProgress[$stage->id - 1]);
-                            $isUnlocked = $isCompleted || $isNextUnlocked;
+                            $isUnlocked = $isCompleted || $isNextUnlocked || $stage->id == 1; // Check if the stage is the first one
+
+                            // Additional check to ensure the first stage is always unlocked
+                            if ($stage->id == 1) {
+                                $isNextUnlocked = true;
+                            }
                         @endphp
 
                         <a href="{{ asset('/stages/' . $stage->id) }}" 
@@ -157,9 +169,11 @@
                 </div>
 
 
+
             </div>
         </section>
 
+        {{-- Section for Profile Content, View Profile Details --}}
         <section class="main-content content-transition hidden" id="profileContent">
             <div class="user-info">
                 <div class="info-title">
@@ -184,6 +198,8 @@
             </div>
         </section>
 
+
+        {{-- Section for Leaderboards Contents  --}}
         <section class="main-content content-transition hidden" id="leaderboardsContent">
             <div class="leaderboards">
                 <div class="leaderboards-title">
@@ -212,6 +228,47 @@
             </div>
         </section>
 
+        {{-- Section for Module Content  --}}
+        <section class="main-content content-transition hidden" id="moduleContent">
+            <input type="checkbox" id="checkbox-cover">
+            <input type="checkbox" id="checkbox-page1">
+            <input type="checkbox" id="checkbox-page2">
+            <input type="checkbox" id="checkbox-page3">
+            <div class="book">
+                <div class="cover">
+                    <label for="checkbox-cover"></label>
+                </div>
+                <div class="page" id="page1">
+                    <div class="front-page">
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil magni laudantium beatae quia. Recusandae, fuga quas consectetur perferendis aperiam esse velit veniam ducimus? Quisquam consequatur perferendis quidem quia, recusandae ab!</p>
+                        <label class="next" for="checkbox-page1"><i class="fas fa-chevron-right"></i></label>
+                    </div>
+                    <div class="back-page">
+                        <img src="1.png">
+                        <label class="prev" for="checkbox-page1"><i class="fas fa-chevron-left fa-xl"></i></label>
+                    </div>
+                </div>
+                <div class="page" id="page2">
+                    <div class="front-page">
+                        <h2>Page 2</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil magni laudantium beatae quia. Recusandae, fuga quas consectetur perferendis aperiam esse velit veniam ducimus? Quisquam consequatur perferendis quidem quia, recusandae ab!</p>
+                        <label class="next" for="checkbox-page2"><i class="fas fa-chevron-right"></i></label>
+                    </div>
+                    <div class="back-page">
+                        <img src="2.png">
+                        <label class="prev" for="checkbox-page2"><i class="fas fa-chevron-left fa-xl"></i></label>
+                    </div>
+                </div>
+                <div class="page" id="page3">
+                    <div class="front-page">
+                        <h2>Page 3</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil magni laudantium beatae quia. Recusandae, fuga quas consectetur perferendis aperiam esse velit veniam ducimus? Quisquam consequatur perferendis quidem quia, recusandae ab!</p>
+                    </div>
+                </div>
+                <div class="back-cover"></div>
+            </div>
+        </section>
+
  
     </main>
 
@@ -221,10 +278,12 @@
         const profileContent = document.getElementById('profileContent');
         const dashboardContent = document.getElementById('dashboardContent');
         const leaderboardsContent = document.getElementById('leaderboardsContent');
+        const moduleContent = document.getElementById('moduleContent');
         const navbarGame = document.querySelector('.navbar-game');
         const navbarProfile = document.querySelector('.navbar-profile');
         const navbarDashboard = document.querySelector('.navbar-dashboard');
         const navbarLeaderboards = document.querySelector('.navbar-support');
+        const navbarModule = document.querySelector('.navbar-module');
 
         /// Function to switch to the game content with animation
         function switchToGameContent() {
@@ -247,13 +306,22 @@
             profileContent.classList.add('hidden');
             leaderboardsContent.classList.remove('hidden'); // Show leaderboards
         }
+        function switchToModuleContent() {
+            dashboardContent.classList.add('hidden');
+            gameContent.classList.add('hidden');
+            profileContent.classList.add('hidden');
+            leaderboardsContent.classList.add('hidden');
+            moduleContent.classList.remove('hidden');
+        }
+        
 
         // Function to switch back to the default dashboard content with animation
         function switchToDefaultContent() {
             dashboardContent.classList.remove('hidden');
             gameContent.classList.add('hidden');
             profileContent.classList.add('hidden');
-            leaderboardsContent.classList.add('hidden'); // Hide leaderboards
+            leaderboardsContent.classList.add('hidden');
+            moduleContent.classList.add('hidden');
         }
 
 
@@ -279,6 +347,7 @@
         navbarProfile.addEventListener('click', switchToProfileContent);
         navbarDashboard.addEventListener('click', switchToDefaultContent);
         navbarLeaderboards.addEventListener('click', switchToLeaderboardsContent);
+        navbarModule.addEventListener('click', switchToModuleContent);
 
 
         // Check if the URL contains the #gameContent fragment and switch to game section

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/stage.css">
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    {{-- <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> --}}
     <title>Stage 1</title>
 </head>
 <body>
@@ -26,10 +26,10 @@
         {{-- Stage Number Header --}}
         <h1 class="stage-number">Stage 1</h1>
 
-        <!-- Rocket Animation Lottie -->
+        {{-- <!-- Rocket Animation Lottie -->
         <div class="rocket" id="rocket">
             <dotlottie-player src="../lottie/rocket.json" background="transparent" speed="2" direction="1" mode="normal" loop autoplay></dotlottie-player>
-        </div>
+        </div> --}}
 
         <div class="coin">
             <h3>Coins: <span id="coinValue">100</span></h3>

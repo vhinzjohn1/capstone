@@ -1,19 +1,19 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Auth;
 
+// Public routes
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/signup', function () {
-    return view('signup');
-})->name('signup');
+// User registration routes
+Route::get('/signup', [UserController::class, 'showRegistrationForm'])->name('signup');
+Route::post('/signup', [UserController::class, 'register'])->name('register.post');
 
-
+// User login routes
 Route::get('/login', function () {
     if (Auth::check()) {
         return redirect('/dashboard');
@@ -21,42 +21,34 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-
 Route::post('/login', [UserController::class, 'login'])->name('login.post');
 
-Route::get('/dashboard', [GameController::class, 'showDashboard'])->middleware(['web', 'auth'])->name('dashboard');
+// Authenticated routes
+Route::middleware(['web', 'auth'])->group(function () {
+    // Dashboard route
+    Route::get('/dashboard', [GameController::class, 'showDashboard'])->name('dashboard');
 
+    // Success modal route
+    Route::get('/success', function () {
+        return view('modals.success');
+    })->name('success');
 
-Route::get('/success', function () {
-    return view('modals.success');
-})->middleware(['web', 'auth'])->name('success');
+    // Update progress route
+    Route::post('/update-progress', [GameController::class, 'updateProgress'])->name('update-progress');
 
+    // User logout route
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::post('/update-progress', [GameController::class, 'updateProgress'])->middleware('web', 'auth')->name('update-progress');
+    // Stages routes
+    Route::get('/stages/{id}', function ($id) {
+        $maxStages = 12;
+        $viewPrefix = 'stages.stage';
 
-// Use UserController for registration
-Route::get('/signup', [UserController::class, 'showRegistrationForm'])->name('register');
-Route::post('/signup', [UserController::class, 'register'])->name('register.post');
-
-
-
-Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-
-Route::get('/stages/{id}', function ($id) {
-    // Define the maximum number of stages
-    $maxStages = 12;
-
-    // Define the view name prefix for stages
-    $viewPrefix = 'stages.stage';
-
-    if ($id >= 1 && $id <= $maxStages) {
-        // Load the corresponding view based on the stage ID
-        $viewName = $id === 1 ? 'introduction' : $viewPrefix . ($id - 1);
-
-        return view($viewName, ['stageId' => $id]);
-    } else {
-        // Handle cases where the stage ID is out of range
-        return abort(404);
-    }
-})->middleware(['web', 'auth'])->name('stage');
-
+        if ($id >= 1 && $id <= $maxStages) {
+            $viewName = $id === 1 ? 'introduction' : $viewPrefix . ($id - 1);
+            return view($viewName, ['stageId' => $id]);
+        } else {
+            return abort(404);
+        }
+    })->name('stage');
+});
