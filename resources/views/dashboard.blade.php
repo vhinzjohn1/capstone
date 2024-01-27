@@ -234,35 +234,38 @@
             <input type="checkbox" id="checkbox-page1">
             <input type="checkbox" id="checkbox-page2">
             <input type="checkbox" id="checkbox-page3">
+            <input type="checkbox" id="checkbox-page4">
             <div class="book">
                 <div class="cover">
                     <label for="checkbox-cover"></label>
                 </div>
                 <div class="page" id="page1">
                     <div class="front-page">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil magni laudantium beatae quia. Recusandae, fuga quas consectetur perferendis aperiam esse velit veniam ducimus? Quisquam consequatur perferendis quidem quia, recusandae ab!</p>
+                        <img src="../img/module/module1.jpg">
                         <label class="next" for="checkbox-page1"><i class="fas fa-chevron-right"></i></label>
                     </div>
                     <div class="back-page">
-                        <img src="1.png">
+                        <img src="../img/module/module1.1.jpg">
                         <label class="prev" for="checkbox-page1"><i class="fas fa-chevron-left fa-xl"></i></label>
                     </div>
                 </div>
                 <div class="page" id="page2">
                     <div class="front-page">
-                        <h2>Page 2</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil magni laudantium beatae quia. Recusandae, fuga quas consectetur perferendis aperiam esse velit veniam ducimus? Quisquam consequatur perferendis quidem quia, recusandae ab!</p>
+                        <img src="../img/module/module1.2.jpg">
+                        {{-- <h2>Page 2</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil magni laudantium beatae quia. Recusandae, fuga quas consectetur perferendis aperiam esse velit veniam ducimus? Quisquam consequatur perferendis quidem quia, recusandae ab!</p> --}}
                         <label class="next" for="checkbox-page2"><i class="fas fa-chevron-right"></i></label>
                     </div>
                     <div class="back-page">
-                        <img src="2.png">
+                        <img src="../img/module/module1.3.jpg">
                         <label class="prev" for="checkbox-page2"><i class="fas fa-chevron-left fa-xl"></i></label>
                     </div>
                 </div>
                 <div class="page" id="page3">
                     <div class="front-page">
-                        <h2>Page 3</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil magni laudantium beatae quia. Recusandae, fuga quas consectetur perferendis aperiam esse velit veniam ducimus? Quisquam consequatur perferendis quidem quia, recusandae ab!</p>
+                        <img src="../img/module/module1.4.jpg">
+                        {{-- <h2>Page 3</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil magni laudantium beatae quia. Recusandae, fuga quas consectetur perferendis aperiam esse velit veniam ducimus? Quisquam consequatur perferendis quidem quia, recusandae ab!</p> --}}
                     </div>
                 </div>
                 <div class="back-cover"></div>
