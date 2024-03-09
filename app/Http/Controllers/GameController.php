@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {
-    public function updateProgress(Request $request): JsonResponse {
+    public function updateProgress(Request $request): JsonResponse
+    {
         // Validation
         $validatedData = $request->validate([
             'user_id' => 'required|integer',
@@ -42,36 +43,41 @@ class GameController extends Controller
 
 
     public function showDashboard()
-{
-    // Fetch all stages
-    $stages = Stage::all();
+    {
+        // Fetch all stages
+        $stages = Stage::all();
 
-    // Fetch user progress from Progress model
-    $userProgressRecord = Progress::where('user_id', auth()->id())->first();
+        // Fetch user progress from Progress model
+        $userProgressRecord = Progress::where('user_id', auth()->id())->first();
 
-    // Fetch user progress from CompletedStage model
-    $completedStages = CompletedStage::where('user_id', auth()->id())->get();
+        // Fetch user progress from CompletedStage model
+        $completedStages = CompletedStage::where('user_id', auth()->id())->get();
 
-    // Create an array to track user progress for each stage
-    $userProgress = [];
+        // Create an array to track user progress for each stage
+        $userProgress = [];
 
-    // Map the completed stages into the $userProgress array for quick access
-    foreach ($completedStages as $completedStage) {
-        $userProgress[$completedStage->stage_id] = $completedStage;
+        // Map the completed stages into the $userProgress array for quick access
+        foreach ($completedStages as $completedStage) {
+            $userProgress[$completedStage->stage_id] = $completedStage;
+        }
+
+        // Retrieve the user's score from the progress record
+        $userScore = $userProgressRecord ? $userProgressRecord->score : 0;
+
+
+        return view('dashboard', compact('userProgress', 'stages', 'userScore'));
     }
 
-    // Retrieve the user's score from the progress record
-    $userScore = $userProgressRecord ? $userProgressRecord->score : 0;
+    public function getLeaderboardData()
+    {
+        $leaderboardData = User::select('users.username', 'progress.score as user_score', DB::raw('COUNT(completed_stages.id) as completed_stages_count'))
+            ->leftJoin('completed_stages', 'users.id', '=', 'completed_stages.user_id')
+            ->leftJoin('progress', 'users.id', '=', 'progress.user_id')
+            ->groupBy('users.username', 'progress.score')
+            ->orderByDesc('user_score')
+            ->get();
 
-    // Fetch leaderboard data
-    $leaderboardData = User::select('users.username', 'progress.score as user_score', DB::raw('COUNT(completed_stages.id) as completed_stages_count'))
-        ->leftJoin('completed_stages', 'users.id', '=', 'completed_stages.user_id')
-        ->leftJoin('progress', 'users.id', '=', 'progress.user_id')
-        ->groupBy('users.username', 'progress.score')
-        ->orderByDesc('user_score')
-        ->get();
-
-    return view('dashboard', compact('userProgress', 'stages', 'userScore', 'leaderboardData'));
-}
+        return response()->json($leaderboardData->toJson());
+    }
 
 }

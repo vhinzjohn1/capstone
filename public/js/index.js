@@ -5,8 +5,8 @@ canvas.width = 1024
 canvas.height = 576
 
 const scaledCanvas = {
-  width: canvas.width / 4,
-  height: canvas.height / 4,
+  width: canvas.width,
+  height: canvas.height,
 }
 
 const floorCollisions2D = []
@@ -129,7 +129,7 @@ const backgroundImageHeight = 432
 const camera = {
   position: {
     x: 0,
-    y: -backgroundImageHeight + scaledCanvas.height,
+    y: 0,
   },
 }
 
@@ -139,8 +139,8 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height)
 
   c.save()
-  c.scale(4, 4)
-  c.translate(camera.position.x, camera.position.y)
+  c.scale(1, 1)
+  // c.translate(camera.position.x, camera.position.y)
   background.update()
   // collisionBlocks.forEach((collisionBlock) => {
   //   collisionBlock.update()
@@ -193,7 +193,7 @@ window.addEventListener('keydown', (event) => {
       keys.a.pressed = true
       break
     case 'w':
-      player.velocity.y = -4
+      player.velocity.y = -3.5
       break
   }
 })

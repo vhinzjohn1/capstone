@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/space_game/index.html', function () {
+    return redirect('/space_game/index.html');
+})->name('space_game');
+
+
+
+
+Route::get('/leaderboard-data', [GameController::class, 'getLeaderboardData'])->name('leaderboard.data');
+
 
 // User registration routes
 Route::get('/signup', [UserController::class, 'showRegistrationForm'])->name('signup');

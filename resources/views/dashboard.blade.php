@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
     <script src="https://kit.fontawesome.com/9a20ced4b7.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Baloo+2:400,800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
 </head>
+
 <body>
     {{-- Include the cursor animation --}}
     @include('cursor.cursor-animation')
@@ -28,20 +31,21 @@
                 </div>
 
                 <div class="avatar">
-                    <img src="avatar.jpg" alt="" srcset="">
-                    <div class="dropdown">
-                    <button class="dropbtn" onclick="myFunction()">
-                        <i class="fa fa-caret-down" style="color: white"></i>
-                    </button>
-                    <div class="dropdown-content" id="myDropdown">
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="myFunction()">
+                            <i class="fa fa-caret-down" style="color: white"></i>
+                        </button>
+                        <div class="dropdown-content" id="myDropdown">
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
 
                     </div>
                 </div>
@@ -54,7 +58,8 @@
         <section class="sidebar">
             <div class="sidebar-container">
                 <div class="logo">
-                    <h2 class="h2-blue">Space</h2><h2 class="h2-orange">Traveller</h2>
+                    <h2 class="h2-blue">Space</h2>
+                    <h2 class="h2-orange">Traveller</h2>
                 </div>
                 <div class="upperside">
                     <img src="avatar.jpg" class="side-avatar">
@@ -72,6 +77,10 @@
 
 
                 <div class="navbar">
+                    {{-- <div class="navbar-dashboard">
+                        <i class="fa-solid fa-gauge" style="color: #ec9955;"></i>
+                        <a href="{{ route('space_game') }}">Space Game</a>
+                    </div> --}}
                     <div class="navbar-dashboard">
                         <i class="fa-solid fa-gauge" style="color: #ec9955;"></i>
                         <a href="#">DASHBOARD</a>
@@ -127,7 +136,7 @@
                 </div>
             </div>
 
-            
+
 
         </section>
 
@@ -146,7 +155,7 @@
 
                 <!-- Inside your gameContent section -->
                 <div class="card">
-                    @foreach($stages as $stage)
+                    @foreach ($stages as $stage)
                         @php
                             $isCompleted = isset($userProgress[$stage->id]);
                             $isNextUnlocked = isset($userProgress[$stage->id - 1]);
@@ -158,13 +167,13 @@
                             }
                         @endphp
 
-                        <a href="{{ asset('/stages/' . $stage->id) }}" 
-                        class="stage-link {{ $isCompleted ? 'completed' : ($isUnlocked ? 'unlocked' : 'locked') }}"
-                        onclick="{{ $isUnlocked ? '' : 'showLockedModal(); return false;' }}">
-                            <i class="fa-solid {{ $isCompleted ? 'fa-award' : ($isUnlocked ? 'fa-unlock' : 'fa-lock') }}"></i>
+                        <a href="{{ asset('/stages/' . $stage->id) }}"
+                            class="stage-link {{ $isCompleted ? 'completed' : ($isUnlocked ? 'unlocked' : 'locked') }}"
+                            onclick="{{ $isUnlocked ? '' : 'showLockedModal(); return false;' }}">
+                            <i
+                                class="fa-solid {{ $isCompleted ? 'fa-award' : ($isUnlocked ? 'fa-unlock' : 'fa-lock') }}"></i>
                             <h3>{{ $stage->name }}</h3>
                         </a>
-
                     @endforeach
                 </div>
 
@@ -176,25 +185,38 @@
         {{-- Section for Profile Content, View Profile Details --}}
         <section class="main-content content-transition hidden" id="profileContent">
             <div class="user-info">
-                <div class="info-title">
-                    <p>PROFILE INFORMATION</p>
-                    <h3>User Details</h3>
-                </div>
+                <div class="glass">
+                    <div class="info-title">
+                        <img src="avatar.jpg" class="side-avatar">
+                        <p>PROFILE INFORMATION</p>
+                    </div>
 
-                <div class="card-user-detail">
-                    <div class="user-detail">
-                        <strong>First Name:</strong> {{ auth()->user()->first_name }}
+                    <div class="card-user-detail">
+
+                        <div class="user-detail">
+                            <h4 class="user-detail-h4">First Name</h4> {{ auth()->user()->first_name }}
+                        </div>
+                        <hr>
+                        <div class="user-detail">
+                            <h4 class="user-detail-h4">Last Name</h4> {{ auth()->user()->last_name }}
+                        </div>
+                        <hr>
+                        <div class="user-detail">
+                            <h4 class="user-detail-h4">Email</h4> {{ auth()->user()->email }}
+                        </div>
+                        <hr>
+                        <div class="user-detail">
+                            <h4 class="user-detail-h4">Username</h4> {{ auth()->user()->username }}
+                        </div>
+                        <hr>
                     </div>
-                    <div class="user-detail">
-                        <strong>Last Name:</strong> {{ auth()->user()->last_name }}
+
+                    <div class="edit-user-btn-div">
+                        <button class="edit-user-btn">Edit</button>
                     </div>
-                    <div class="user-detail">
-                        <strong>Email:</strong> {{ auth()->user()->email }}
-                    </div>
-                    <div class="user-detail">
-                        <strong>Username:</strong> {{ auth()->user()->username }}
-                    </div>
-                </div>
+
+                </div><!-- End of Glass Content -->
+
             </div>
         </section>
 
@@ -202,29 +224,20 @@
         {{-- Section for Leaderboards Contents  --}}
         <section class="main-content content-transition hidden" id="leaderboardsContent">
             <div class="leaderboards">
-                <div class="leaderboards-title">
-                    <h3>LEADERBOARDS</h3>
+                <div id="header">
+                    <h1>Leaderboards</h1>
                 </div>
-                <div class="leaderboards-content">
+                <div id="leaderboard">
+                    <div class="ribbon"></div>
                     <table>
-                        <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Score</th>
-                                <th>Completed Stages</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($leaderboardData as $user)
-                                <tr>
-                                    <td>{{ $user->username }}</td>
-                                    <td>{{ $user->user_score }}</td>
-                                    <td>{{ $user->completed_stages_count }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+                        <tr>
+                            <td class="number">5</td>
+                            <td class="name">Johnny Suh</td>
+                            <td class="points">258.208</td>
+                        </tr>
                     </table>
                 </div>
+            </div>
             </div>
         </section>
 
@@ -272,8 +285,11 @@
             </div>
         </section>
 
- 
+
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script>
         const mainContent = document.getElementById('mainContent');
@@ -309,6 +325,7 @@
             profileContent.classList.add('hidden');
             leaderboardsContent.classList.remove('hidden'); // Show leaderboards
         }
+
         function switchToModuleContent() {
             dashboardContent.classList.add('hidden');
             gameContent.classList.add('hidden');
@@ -316,7 +333,7 @@
             leaderboardsContent.classList.add('hidden');
             moduleContent.classList.remove('hidden');
         }
-        
+
 
         // Function to switch back to the default dashboard content with animation
         function switchToDefaultContent() {
@@ -362,11 +379,61 @@
     </script>
 
 
-<script>
-    function showLockedModal() {
-        // Implement logic to show a modal for locked stages
-        alert('This stage is locked. You cannot play it yet.');
-    }
-</script>
+    <script>
+        $(document).ready(function() {
+            function updateLeaderboard() {
+                $.getJSON('/leaderboard-data', function(data) {
+
+
+                    const receivedData = JSON.parse(data);
+
+                    console.log(receivedData)
+
+                    console.log(receivedData[0].username)
+
+
+                    // Clear existing table rows except the header
+                    $('table tbody tr').remove();
+
+
+
+                    // Iterate through the first 10 records and append rows to the table
+                    for (let i = 0; i < Math.min(receivedData.length, 10); i++) {
+
+                        let user = receivedData[i];
+
+
+                        let row = `
+                    <tr>
+
+                        <td class="number">${i + 1}</td>
+                        <td class="name">${user.username}</td>
+                        <td class="points">
+                            ${user.completed_stages_count}
+                        </td>
+
+                    </tr>
+                `;
+                        $('table tbody').append(row);
+                    }
+                });
+            }
+
+            // Update leaderboard initially
+            updateLeaderboard();
+
+            // Update leaderboard periodically (every 30 seconds)
+            setInterval(updateLeaderboard, 30000);
+        });
+
+
+
+
+        function showLockedModal() {
+            // Implement logic to show a modal for locked stages
+            alert('This stage is locked. You cannot play it yet.');
+        }
+    </script>
 </body>
+
 </html>
