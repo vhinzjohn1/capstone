@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Progress extends Model
+class Score extends Model
 {
-    protected $fillable = ['user_id', 'completion_status', 'score'];
+    use HasFactory;
+
+    protected $fillable = ['user_id', 'is_active', 'score'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 }
-

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/main_game.css">
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <title>Stage 5</title>
 </head>
+
 <body>
     {{-- Include the cursor animation --}}
     @include('cursor.cursor-animation')
@@ -19,14 +20,9 @@
     </form>
 
     <main>
-    
-    <!-- including the modal for success -->
-    @include('modals.success')
 
-        <!-- Rocket Animation Lottie -->
-        <div class="rocket" id="rocket">
-            <dotlottie-player src="../lottie/rocket.json" background="transparent" speed="2" direction="1" mode="normal" loop autoplay></dotlottie-player>
-        </div>
+        <!-- including the modal for success -->
+        @include('modals.success')
 
         <div class="coin">
             <h3>Coins: <span id="coinValue">100</span></h3>
@@ -161,18 +157,6 @@
                 return choiceElement.textContent.trim() === "";
             });
 
-            // Calculate the total value based on the number of correct answers and blank areas
-            if (correctDropAreas.length === 2) {
-                showCoinAnimation('+50');
-                totalCoins = 150;
-            } else if (correctDropAreas.length === 1 && blankDropAreas.length === 1) {
-                totalCoins = 125;
-            } else if (correctDropAreas.length >= 1) {
-                showCoinAnimation('+25');
-                totalCoins = 125;
-            } else {
-                totalCoins = 100;
-            }
 
             // Update the coin value display
             updateCoinValue();
@@ -288,8 +272,7 @@
             // For example, you can display an alert:
             alert('Error: ' + message);
         }
-
-
     </script>
 </body>
+
 </html>

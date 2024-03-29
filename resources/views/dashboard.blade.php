@@ -145,8 +145,7 @@
         <section class="main-content content-transition hidden" id="gameContent">
             <div class="feature">
                 <div class="feature-title">
-                    <p>Welcome</p>
-                    <h3>TO OUR STAGE SELECTION</h3>
+                    <h3>STAGE SELECTION</h3>
                 </div>
 
                 @php
@@ -155,27 +154,39 @@
 
                 <!-- Inside your gameContent section -->
                 <div class="card">
+                    @php
+                        $nextUnlockedStageId = null;
+                    @endphp
+
                     @foreach ($stages as $stage)
                         @php
                             $isCompleted = isset($userProgress[$stage->id]);
-                            $isNextUnlocked = isset($userProgress[$stage->id - 1]);
-                            $isUnlocked = $isCompleted || $isNextUnlocked || $stage->id == 1; // Check if the stage is the first one
+                            $isNextUnlocked = isset($userProgress[$stage->id - 1]) || $stage->id == 1; // Check if the stage is unlocked or first one
 
                             // Additional check to ensure the first stage is always unlocked
                             if ($stage->id == 1) {
                                 $isNextUnlocked = true;
                             }
+
+                            if ($isNextUnlocked && is_null($nextUnlockedStageId)) {
+                                $nextUnlockedStageId = $stage->id;
+                            }
+
+                            // Determine image filename based on stage status
+                            $imagePrefix = $isCompleted ? 'a' : ($isNextUnlocked ? 'b' : 'c');
+                            $imageName = $imagePrefix . str_pad($stage->id, 2, '0', STR_PAD_LEFT) . '.png';
+                            $imageUrl = asset('img/stage/' . $imageName);
                         @endphp
 
                         <a href="{{ asset('/stages/' . $stage->id) }}"
-                            class="stage-link {{ $isCompleted ? 'completed' : ($isUnlocked ? 'unlocked' : 'locked') }}"
-                            onclick="{{ $isUnlocked ? '' : 'showLockedModal(); return false;' }}">
-                            <i
-                                class="fa-solid {{ $isCompleted ? 'fa-award' : ($isUnlocked ? 'fa-unlock' : 'fa-lock') }}"></i>
-                            <h3>{{ $stage->name }}</h3>
+                            class="stage-link {{ $isCompleted ? 'completed' : ($isNextUnlocked ? 'unlocked' : 'locked') }}"
+                            onclick="{{ $isNextUnlocked ? '' : 'showLockedModal(); return false;' }} {{ $isCompleted ? 'showCompletedModal(); return false;' : '' }}"
+                            style="background-image: url('{{ $imageUrl }}')">
                         </a>
                     @endforeach
                 </div>
+
+
 
 
 
@@ -224,8 +235,9 @@
         {{-- Section for Leaderboards Contents  --}}
         <section class="main-content content-transition hidden" id="leaderboardsContent">
             <div class="leaderboards">
-                <div id="header">
+                <div id="header" class="header-leaderboards">
                     <h1>Leaderboards</h1>
+                    <h2>Stage Completed</h2>
                 </div>
                 <div id="leaderboard">
                     <div class="ribbon"></div>
@@ -432,6 +444,11 @@
         function showLockedModal() {
             // Implement logic to show a modal for locked stages
             alert('This stage is locked. You cannot play it yet.');
+        }
+
+        function showCompletedModal() {
+            // Show your completed modal here
+            alert("Stage is already completed!");
         }
     </script>
 </body>

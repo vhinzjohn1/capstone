@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('progress', function (Blueprint $table) {
-            $table->id();
+        Schema::create('scores', function (Blueprint $table) {
+            $table->id('score_id');
             $table->unsignedBigInteger('user_id');
-            $table->integer('completion_status');
+            $table->boolean('is_active');
             $table->integer('score');
             $table->timestamps();
 

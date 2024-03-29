@@ -116,9 +116,9 @@ main {
     width: 100%;
 }
 
-/* Adjust the width of .game1 to fit 4 items per row */
+/* Adjust the width of .game to fit 3 items per row */
 .game {
-    width: calc(25% - 10px);
+    width: calc(33.33% - (2 * 10px / 3)); /* 2 gaps for 3 items */
     height: calc(25vh - 10px);
     border-radius: 10px;
     background-size: cover;
@@ -144,37 +144,10 @@ main {
     background-color: var(--primary-color);
 }
 
-.unlocked {
-    background-color: green;
-}
-
-.locked {
-    background-color: grey;
-}
-
 /* Add these styles to your CSS file */
-
-/* Completed stage style */
-.stage-link.completed {
-    background-color: gold;
-    color: black; /* Adjust text color as needed */
-}
-
-/* Unlocked stage style */
-.stage-link.unlocked {
-    background-color: green;
-    color: white; /* Adjust text color as needed */
-}
-
-/* Locked stage style */
-.stage-link.locked {
-    background-color: gray;
-    color: white; /* Adjust text color as needed */
-}
-
 .stage-link {
     position: relative;
-    width: calc(25% - 10px);
+    width: calc(33.33% - (2 * 10px / 3)); /* 2 gaps for 3 items */
     height: calc(25vh - 10px);
     border-radius: 10px;
     cursor: pointer;
@@ -185,7 +158,11 @@ main {
     text-decoration: none;
     z-index: 3;
     color: white; /* Text color */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
+
 .stage-link h3 {
     z-index: 3;
 }
@@ -198,6 +175,7 @@ main {
 
 .stage-link:hover {
     transform: scale(1.05);
+    background-color: #141a391e;
 }
 
 /* Topbar Styling and CSS */
@@ -527,6 +505,12 @@ main {
     position: absolute;
     left: 25%;
 } */
+
+.header-leaderboards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .leaderboards {
     width: 90%;
     height: 70vh;
@@ -535,6 +519,14 @@ main {
 #header h1 {
     font-family: "Rubik", sans-serif;
     font-size: 1.7rem;
+    color: #141a39;
+    text-transform: uppercase;
+    cursor: default;
+    margin-bottom: 10px;
+}
+#header h2 {
+    font-family: "Rubik", sans-serif;
+    font-size: 1.3rem;
     color: #141a39;
     text-transform: uppercase;
     cursor: default;

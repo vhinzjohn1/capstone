@@ -26,9 +26,6 @@ class StagesTableSeeder extends Seeder
             ['name' => 'Stage 6', 'unlock_condition' => 7, 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'Stage 7', 'unlock_condition' => 8, 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'Stage 8', 'unlock_condition' => 9, 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Stage 9', 'unlock_condition' => 10, 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Stage 10', 'unlock_condition' => 11, 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Stage 11', 'unlock_condition' => 12, 'created_at' => $now, 'updated_at' => $now],
         ]);
     }
 }

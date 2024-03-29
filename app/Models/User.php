@@ -13,7 +13,8 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
-        'email',
+        'grade_level',
+        'birth_date',
         'username',
         'password',
     ];
@@ -23,11 +24,4 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    // If you have additional attributes or relationships, you can define them here.
-
-    // Example of a relationship with another model (e.g., courses):
-    public function courses()
-    {
-        return $this->hasMany(Course::class);
-    }
 }

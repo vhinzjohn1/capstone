@@ -7,6 +7,7 @@ use App\Models\Progress;
 use App\Models\User;
 use App\Models\Stage;
 use App\Models\CompletedStage;
+use App\Models\Score;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
@@ -28,9 +29,9 @@ class GameController extends Controller
         $stageId = $validatedData['stage_id'];
         $score = $validatedData['score'];
 
-        Progress::updateOrCreate(
+        Score::updateOrCreate(
             ['user_id' => $userId],
-            ['score' => $score, 'completion_status' => 1]
+            ['score' => $score, 'is_active' => 1]
         );
 
         CompletedStage::updateOrCreate(
@@ -48,7 +49,7 @@ class GameController extends Controller
         $stages = Stage::all();
 
         // Fetch user progress from Progress model
-        $userProgressRecord = Progress::where('user_id', auth()->id())->first();
+        $userProgressRecord = Score::where('user_id', auth()->id())->first();
 
         // Fetch user progress from CompletedStage model
         $completedStages = CompletedStage::where('user_id', auth()->id())->get();
@@ -70,10 +71,10 @@ class GameController extends Controller
 
     public function getLeaderboardData()
     {
-        $leaderboardData = User::select('users.username', 'progress.score as user_score', DB::raw('COUNT(completed_stages.id) as completed_stages_count'))
+        $leaderboardData = User::select('users.username', 'scores.score as user_score', DB::raw('COUNT(completed_stages.id) as completed_stages_count'))
             ->leftJoin('completed_stages', 'users.id', '=', 'completed_stages.user_id')
-            ->leftJoin('progress', 'users.id', '=', 'progress.user_id')
-            ->groupBy('users.username', 'progress.score')
+            ->leftJoin('scores', 'users.id', '=', 'scores.user_id')
+            ->groupBy('users.username', 'scores.score')
             ->orderByDesc('user_score')
             ->get();
 
